@@ -1,0 +1,93 @@
+El sistema de solines necesita una pantalla de login donde esta identifique que tipo de usuario es
+y dependiendo de eso desplegar la pantalla correspondiente.
+
+Los tipos de usuarios que puede tener el sistema solin son
+Administrador, subdireccion, recursos financieros, jefe de departamento(normal)
+estos roles definen las funciones a las que tiene acceso el usuario
+
+cada usuario debe tener un usuario y un password
+fecha de creacion, fechaq de modificacion
+su nombre su rol de usuario y el departamento al que pertenece.
+Cada usuario tiene permisos sobre El manejo de solines y el manejo de usuarios
+
+cada departamento tiene un seudonimo y su nombre de departamento
+cada departamento tiene uno o mas proyectos (incluye gasto basico)
+cada proyecto tiene un nombre, es creado por un usuario reponsable y a estos se les asigna un limite de recurso
+a cada proyectro se le asigna un presupuesto por periodo, quien lo asigna
+y en que fecha fue asignado.
+
+Los permisos sobre solines son:
+ver solines
+crear solines
+Consultar solines
+Guardar comprobantes
+Aprobar solines
+Aprobar Comprobantes
+
+Los permisos de usuarios son:
+ver usuarios
+ver usuario
+nuevo usuario
+actualizar usuario
+dar de baja usuario
+loguear
+
+El usuario Administrador puede ver a los usuarios
+el detalle de cada uno
+agregar un nuevo usuario
+editar la informacion del usuario
+editar los permisos del usuario
+
+El usuario Subdirector puede ver los solines aprobados y sin aprobar
+puede aprobar solines
+ver el detalle del solin
+aprobar el recurso 
+aprobar el comprobante
+
+El usuario Financiero Puede ver solines(pendientes de aprobar, pendientes de comprobar, comprobadas y aprobadas)
+puede ver proyectos
+aprobar
+editar proyectos
+asignar recurso al proyecto por periodo
+nuevo proyecto
+ver periodos
+crear periodos
+editar periodos
+
+El usuario jefe de departamento(usuario normal)
+crear solines 
+ver solines sin aprobar
+ver solines pendientes de comprobar
+y los solines finalizados
+imprimir solines
+
+Los periodos es el mes en el que llega recurso
+tiene un registro de recurso
+asignacion del recurso a uno o mas proyectos
+inicio de periodo
+termino del periodo
+
+El ciclo de vida del solin es 
+crear solin por usuario normal
+el recurso es aprobado (subdirector)
+financieros crea el cheque
+se imprime solin(usuario normal)
+se entregan comprobantes de gasto(usuario normal)
+se comprueban gastos(financiero)(fin del proceso)
+
+Un solin contiene
+el usuario que lo creo
+numero de folio
+el monto
+la descripcion para que se usara el recurso
+si contiene comprobantes(uno o mas)
+con que tipo de fondo se paga(cheque, efectivo, transferencia)
+a nombre de quien se hace el pago
+fecha de creacion
+el estatus 
+el usuario que lo aprobo
+el usuario que lo comprobo
+la fecha de aprobacion
+la fecha de comprobacion
+el periodo al que pertenece
+el proyecto al que pertenece

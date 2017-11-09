@@ -1,0 +1,2 @@
+un departamento tiene uno o varios proyectos
+puede tener varios solines

@@ -1,0 +1,14 @@
+un Solin contiene una cantidad de autorizacion (que en caso de tener facturas no es necesario)
+La cantidad con letra
+Una descripcion del gasto (que material se va a comprar con el recurso)
+la fecha en que se esta solicitando
+el folio interno de solin
+el folio general de solin
+Departamento
+Tipo de gasto (este tipo de gasto puede ser basico o de proyecto en cuyo caso el proyecto depende del departamento)
+El nombre del solicitante
+El cargo que porta el solicitante
+Comprobantes entregados (pueden ser las facturas originales o sin comprobantes)
+una o varias facturas (No. de factura y el importe)
+la forma de pago (cheque, fondo revolvente o transferencia)
+nombre del beneficiario del cheque

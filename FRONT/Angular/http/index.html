@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="MyfirstApp">
+<head>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+	<script type="text/javascript" src="./js/controller.js"></script>
+	<meta charset="utf-8">
+	<title>Hola Controller</title>
+</head>
+<body ng-controller="FirstController">
+	
+	<ul>
+		<li ng-repeat = "sala in post">
+			{{sala.title}} - <strong>{{sala.body}}</strong>
+		</li>
+	</ul>
+</body>
+</html>

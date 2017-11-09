@@ -1,0 +1,2 @@
+un proyecto tiene un id 
+nombre de proyecto
