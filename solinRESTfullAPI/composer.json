@@ -40,5 +40,11 @@
 	},
 	"config": {
 		"preferred-install": "dist"
+	},
+	"repositories": {
+		"repo-name": {
+			"type": "vcs",
+			"url": "https://github.com/jamisonvalenta/Laravel-4-Generators.git"
+		}
 	}
 }
