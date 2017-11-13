@@ -29,6 +29,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var array
 	 */
-	protected $hidden = ['password', 'remember_token','fecha_de_creacion'];
+	protected $hidden = ['password', 'remember_token','fecha_de_creacion','fecha_de_modificacion'];
 
 }
