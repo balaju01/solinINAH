@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use App\Departamento;
+
 
 class DatabaseSeeder extends Seeder {
 
@@ -12,11 +14,11 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		Model::unguard();
+		/*Model::unguard();
 
 		// $this->call('UserTableSeeder');
 		$this->call('DepartamentoSeeder');
-		$this->call('UsuarioSeeder');
+		$this->call('UsuarioSeeder');*/
 	}
 
 }
