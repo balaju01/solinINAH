@@ -17,6 +17,11 @@ class UsuarioController extends Controller {
 		//
 	}
 
+	public function showAll()
+	{
+		return "aqui se muestan los Usuarios";
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *

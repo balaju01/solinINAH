@@ -2,7 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Departamento;
 use Illuminate\Http\Request;
 
 class DepartamentoController extends Controller {
@@ -15,11 +15,13 @@ class DepartamentoController extends Controller {
 	public function index()
 	{
 		//
+		$data=Departamento::all();
+		return response()->json([$data],200);
 	}
 
-	public function showAll()
+	public function showName($name)
 	{
-		return "aqui se muestan los Departamentos";
+		return "aqui se muestan los Departamentos por Nombre = $name";
 	}
 
 	/**
@@ -30,6 +32,7 @@ class DepartamentoController extends Controller {
 	public function create()
 	{
 		//
+		return "aqui se crean los Departamentos";
 	}
 
 	/**
@@ -51,6 +54,11 @@ class DepartamentoController extends Controller {
 	public function show($id)
 	{
 		//
+		$data=Departamento::find($id);
+		if (!$data) {
+			return response()->json(['No se encontro el departamento'],404);	
+		}
+		return response()->json([$data],200);
 	}
 
 	/**
@@ -62,6 +70,7 @@ class DepartamentoController extends Controller {
 	public function edit($id)
 	{
 		//
+		return "aqui se edita el Departamento por id = $id";
 	}
 
 	/**
@@ -73,6 +82,7 @@ class DepartamentoController extends Controller {
 	public function update($id)
 	{
 		//
+		return "aqui se actualiza el Departamento por id = $id";
 	}
 
 	/**
@@ -84,6 +94,7 @@ class DepartamentoController extends Controller {
 	public function destroy($id)
 	{
 		//
+		return "aqui se elimin el Departamento por id = $id";
 	}
 
 }

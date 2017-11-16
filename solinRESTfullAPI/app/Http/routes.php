@@ -20,6 +20,6 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 */
-Route::get('/departamento', 'DepartamentoController@showAll');
+Route::get('/departamento/{Nombre}', 'DepartamentoController@showName');
 Route::resource('departamentos','DepartamentoController');
 Route::resource('users','UsuarioController');
