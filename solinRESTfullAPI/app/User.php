@@ -31,4 +31,34 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token','fecha_de_creacion'];
 
+	public function Departamento()
+	{
+		return $this->belongsTo('App\Departamento');
+	}
+
+	public function SolinCreador()
+	{
+		return $this->hasMany('App\Solin','usuario_cr_id');
+	}
+
+	public function SolinAutori()
+	{
+		return $this->hasMany('App\Solin','usuario_a_id');
+	}
+
+	public function SolinComprueba()
+	{
+		return $this->hasMany('App\Solin','usuario_c_id');
+	}
+
+	public function Proyecto()
+	{
+		return $this->hasMany('App\Proyecto');
+	}
+
+	public function Recurso()
+	{
+		return $this->hasMany('App\Recurso');
+	}
+
 }

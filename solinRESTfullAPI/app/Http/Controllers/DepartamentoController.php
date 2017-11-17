@@ -16,6 +16,9 @@ class DepartamentoController extends Controller {
 	{
 		//
 		$data=Departamento::all();
+		if(!$data){
+			return response()->json(['No hay departamentos',404],404);
+		}
 		return response()->json([$data],200);
 	}
 
@@ -54,9 +57,11 @@ class DepartamentoController extends Controller {
 	public function show($id)
 	{
 		//
+
 		$data=Departamento::find($id);
+		
 		if (!$data) {
-			return response()->json(['No se encontro el departamento'],404);	
+			return response()->json(['No se encontro el departamento',404],404);
 		}
 		return response()->json([$data],200);
 	}

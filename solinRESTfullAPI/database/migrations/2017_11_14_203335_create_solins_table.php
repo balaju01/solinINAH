@@ -18,8 +18,8 @@ class CreateSolinsTable extends Migration {
 			$table->string('folio');
 			$table->integer('proyecto_id')->unsigned();
 			$table->integer('usuario_cr_id')->unsigned();
-			$table->integer('usuario_c_id')->unsigned();
-			$table->integer('usuario_a_id')->unsigned();
+			$table->integer('usuario_c_id')->unsigned()->nullable();
+			$table->integer('usuario_a_id')->unsigned()->nullable();
 			$table->integer('periodo_id')->unsigned();
 			$table->float('monto');
 			$table->string('pago');

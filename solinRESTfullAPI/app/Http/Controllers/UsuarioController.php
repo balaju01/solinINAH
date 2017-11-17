@@ -2,7 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\User;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller {
@@ -15,6 +15,11 @@ class UsuarioController extends Controller {
 	public function index()
 	{
 		//
+		$data=User::all();
+		if(!$data){
+			return response()->json(['No hay Usuarios',404],404);
+		}
+		return response()->json([$data],200);
 	}
 
 	public function showAll()
@@ -51,6 +56,12 @@ class UsuarioController extends Controller {
 	public function show($id)
 	{
 		//
+		$data=User::find($id);
+		
+		if (!$data) {
+			return response()->json(['No se encontro el Usuario',404],404);
+		}
+		return response()->json([$data],200);
 	}
 
 	/**
