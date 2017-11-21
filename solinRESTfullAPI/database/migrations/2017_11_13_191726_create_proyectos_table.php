@@ -17,7 +17,7 @@ class CreateProyectosTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->integer('usuario_id')->unsigned();
-			$table->string('cave');
+			$table->string('clave')->nullable();
 			$table->foreign('usuario_id')->references('id')->on('users');
 			$table->timestamps();
 		});

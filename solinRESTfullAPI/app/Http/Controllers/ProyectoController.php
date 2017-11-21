@@ -2,10 +2,10 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Proyecto;
 use Illuminate\Http\Request;
 
-class UsuarioController extends Controller {
+class ProyectoController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,23 +14,12 @@ class UsuarioController extends Controller {
 	 */
 	public function index()
 	{
-		//Se muestran todos los usuarios
-		$data=User::all();
+		//Muestra todos los proyectos
+		$data=Proyecto::all();
 		if(!$data){
-			return response()->json(['No hay Usuarios',404],404);
+			return response()->json(['No hay Proyectos',404],404);
 		}
 		return response()->json([$data],200);
-	}
-
-	public function showUser($name)
-	{
-		//Se busca el usuario por nombre de usuario
-		$data=User::where('email',$name) -> first();
-		if(!$data){
-			return response()->json(['Usuario no existente',404],404);
-		}
-		return response()->json([$data],200);
-		
 	}
 
 	/**
@@ -61,13 +50,7 @@ class UsuarioController extends Controller {
 	 */
 	public function show($id)
 	{
-		//Se busca el usuario por Id
-		$data=User::find($id);
-		
-		if (!$data) {
-			return response()->json(['No se encontro el Usuario',404],404);
-		}
-		return response()->json([$data],200);
+		//
 	}
 
 	/**

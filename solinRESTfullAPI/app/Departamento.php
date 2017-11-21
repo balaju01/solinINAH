@@ -13,4 +13,9 @@ class Departamento extends Model {
 		return $this->hasOne('App\User');
 	}
 
+	public function Proyecto()
+	{
+		return $this->belongsToMany('App\Proyecto', 'deptos__proyectos');
+	}
+
 }

@@ -21,5 +21,7 @@ Route::controllers([
 ]);
 */
 Route::get('/departamento/{Nombre}', 'DepartamentoController@showName');
+Route::get('/user/{Nombre}', 'UsuarioController@showUser');
 Route::resource('departamentos','DepartamentoController');
 Route::resource('users','UsuarioController');
+Route::resource('proyectos','ProyectoController');
