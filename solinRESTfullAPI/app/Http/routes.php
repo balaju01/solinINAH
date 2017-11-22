@@ -22,6 +22,9 @@ Route::controllers([
 */
 Route::get('/departamento/{Nombre}', 'DepartamentoController@showName');
 Route::get('/user/{Nombre}', 'UsuarioController@showUser');
+Route::get('/users/{users}/solins/estado/{estado}', 'SolinController@UsuarioEstado');
+Route::get('/solins/estado/{estado}', 'SolinController@Estado');
 Route::resource('departamentos','DepartamentoController');
 Route::resource('users','UsuarioController');
 Route::resource('proyectos','ProyectoController');
+Route::resource('users.solins','SolinController');

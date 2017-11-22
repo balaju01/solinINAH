@@ -22,6 +22,12 @@ class ProyectoController extends Controller {
 		return response()->json([$data],200);
 	}
 
+	public function SaldoProyecto($idProyecto,$idPeriodo)
+	{
+		//muestra el saldo de un proyecto dependiendo del periodo
+		SELECT  proyectos.name, recursos.monto, recursos.periodo_id, proyectos.id, recursos.proyecto_id  FROM `proyectos` INNER JOIN recursos ON proyectos.id = recursos.proyecto_id WHERE proyectos.id = 1 AND recursos.periodo_id = 1
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
