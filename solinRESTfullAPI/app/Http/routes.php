@@ -20,11 +20,18 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 */
+
+Route::resource('departamentos','DepartamentoController');
 Route::get('/departamento/{Nombre}', 'DepartamentoController@showName');
+
+Route::resource('users','UsuarioController');
 Route::get('/user/{Nombre}', 'UsuarioController@showUser');
+
+Route::resource('proyectos','ProyectoController');
+Route::get('/proyectos/{proyectos}/saldo/periodo/{periodo}', 'ProyectoController@SaldoAsignadoProyecto');
+
+Route::resource('users.solins','SolinController');
 Route::get('/users/{users}/solins/estado/{estado}', 'SolinController@UsuarioEstado');
 Route::get('/solins/estado/{estado}', 'SolinController@Estado');
-Route::resource('departamentos','DepartamentoController');
-Route::resource('users','UsuarioController');
-Route::resource('proyectos','ProyectoController');
-Route::resource('users.solins','SolinController');
+
+Route::resource('periodos','PeriodoController');

@@ -19,6 +19,7 @@ class CreateProyectosTable extends Migration {
 			$table->integer('usuario_id')->unsigned();
 			$table->string('clave')->nullable();
 			$table->foreign('usuario_id')->references('id')->on('users');
+			$table->float('saldo');
 			$table->timestamps();
 		});
 	}

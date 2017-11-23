@@ -2,11 +2,10 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Proyecto;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class ProyectoController extends Controller {
+use Illuminate\Http\Request;
+
+class RecursoController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -15,22 +14,7 @@ class ProyectoController extends Controller {
 	 */
 	public function index()
 	{
-		//Muestra todos los proyectos
-		$data=Proyecto::all();
-		if(!$data){
-			return response()->json(['No hay Proyectos',404],404);
-		}
-		return response()->json([$data],200);
-	}
-
-	public function SaldoAsignadoProyecto($idProyecto,$idPeriodo)
-	{
-		//muestra el saldo de un proyecto dependiendo del periodo
-		$data = DB::select('SELECT  proyectos.name, recursos.monto, recursos.periodo_id, proyectos.id, recursos.proyecto_id  FROM proyectos INNER JOIN recursos ON proyectos.id = recursos.proyecto_id WHERE proyectos.id = '.$idProyecto.' AND recursos.periodo_id = '.$idPeriodo);
-		if (!$data) {
-			return response()->json(['No se encontro saldo asignado del Solin',404],404);
-		}
-		return response()->json([$data],200);
+		//
 	}
 
 	/**

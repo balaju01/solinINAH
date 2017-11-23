@@ -6,7 +6,7 @@ class Proyecto extends Model {
 
 	//
 	protected $table='proyectos';
-	protected $fillable = ['name', 'clave','usuario_id'];
+	protected $fillable = ['name', 'clave','usuario_id','saldo'];
 
 
 	public function Solin()
