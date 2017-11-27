@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  
+  <body ng-controller="PruebaController">
+    &iquest;Se ha producido el evento? {{producidoEvento}}
+
+    <table>
+	  <thead>
+	    <tr>
+	      <th>IdProvincia</th>
+	      <th>Nombre</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr ng-repeat="provincia in provincias" style="background-color:{{$even?'white':'yellow'}}">
+	      <td>{{provincia.idProvincia}}</td>
+	      <td>{{provincia.nombre}}</td>
+	      <td>{{$index}}</td>
+	    </tr>
+	  </tbody>
+	</table>
+	<strong ng-repeat-start="provincia in provincias" >{{provincia.idProvincia}}</strong> {{provincia.nombre}}
+	<br ng-repeat-end>{{provincia.nombre}}</br>
+	<select ng-model="miProvinciaSeleccionada" ng-options="provincia as provincia.nombre for provincia in provincias track by provincia.idProvincia" >
+	  <option value="">--Elige opcion--</option>
+	</select>
+
+
+	<input type="checkbox" ng-model="showNombre">¿Mostrar nombre?
+	<br>
+	<div ng-if="showNombre">
+	  Nombre: <input ng-model="nombre" >
+	  <br>
+	  El valor de "nombre" en el $scope del "ng-if" es : {{nombre}}
+	</div>
+	El valor de "nombre" en el $scope del "Controlador" es : <strong>{{nombre}}</strong>
+	 
+	<hr>
+	 
+	<input type="checkbox" ng-model="modelo.showApellido">¿Mostrar apellido?
+	<br>
+	<div ng-if="modelo.showApellido">
+	  Apellido: <input ng-model="modelo.apellido" >
+	  <br>
+	  El valor de "apellido" en el $scope del "ng-if" es : {{modelo.apellido}}
+	</div>
+	El valor de "apellido" en el $scope del "Controlador" es : {{modelo.apellido}}
+	 
+  </body>
+  
+</html>
