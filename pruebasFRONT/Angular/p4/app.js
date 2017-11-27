@@ -1,6 +1,16 @@
 var app=angular.module("app",[]);
   
-app.controller("SeguroController",function($scope) {
+app.controller("SeguroController",['$scope','$log','$http',function($scope,$log,$http) {
+
+  var config={
+    method:"GET",
+    url:"localhost/solin/solinRESTfullAPI/public/users"
+  }
+
+  var response=$http(config);
+
+  console.log(response);
+
   $scope.seguro={
     nif:"",
     nombre:"",
@@ -24,4 +34,7 @@ app.controller("SeguroController",function($scope) {
     },
     fechaCreacion:new Date()
   }
-});
+   
+  console.log("Acabamos de crear el $scope");
+  
+}]);
