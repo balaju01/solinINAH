@@ -28,13 +28,16 @@ app.controller("SeguroController",['$scope','$log','$http',function($scope,$log,
 
   var config={
     method:"GET",
-    url:"./datos.json"
+    url:"http://localhost/solin/solinRESTfullAPI/public/users"
   }
 
   var response=$http(config);
 
   response.success(function(data, status, headers, config) {
-      $scope.seguro=data;
+      $scope.seguro.nombre=data[0][0].name;
+      console.log(data);
+      console.log(data[0][0]);
+
   });
   
   response.error(function(data, status, headers, config) {
@@ -45,6 +48,6 @@ app.controller("SeguroController",['$scope','$log','$http',function($scope,$log,
 
   
    
-  console.log("Acabamos de crear el $scope");
+  console.log("Acabamos de crear el $scope ");
   
 }]);

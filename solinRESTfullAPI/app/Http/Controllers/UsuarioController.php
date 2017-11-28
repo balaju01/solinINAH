@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller {
 
@@ -15,7 +16,7 @@ class UsuarioController extends Controller {
 	public function index()
 	{
 		//Se muestran todos los usuarios
-		$data=User::all();
+		$data = DB::select('SELECT  users.id, users.name, departamentos.id, departamentos.name AS departamento  FROM users INNER JOIN departamentos ON departamentos.id = users.departamento_id');
 		if(!$data){
 			return response()->json(['No hay Usuarios',404],404);
 		}
