@@ -49,9 +49,14 @@ class UsuarioController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
 		//
+		if (!$request->get('name')) {
+			return response()->json(['faltan datos',202],202);
+		}
+		User::create($request->all());
+		return response()->json(['se ha creado al usuario'],200);
 	}
 
 	/**
