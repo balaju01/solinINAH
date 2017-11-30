@@ -2,10 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use App\Departamento;
+use App\User;
 
-
-class DatabaseSeeder extends Seeder {
+class UserSeeder extends Seeder {
 
 	/**
 	 * Run the database seeds.
@@ -14,11 +13,17 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		/*Model::unguard();
+		
 
 		// $this->call('UserTableSeeder');
-		$this->call('DepartamentoSeeder');
-		$this->call('UsuarioSeeder');*/
+		User::create
+		([
+			'name'->'Admin',
+			'departamento_id'->1,
+			'email'->'admin',
+			'password'->Hash::make('admin')
+		]);
+		
 	}
 
 }

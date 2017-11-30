@@ -16,6 +16,8 @@
 
 		<script type="text/javascript" src="../../js/controller/admin.js"></script>
 
+		<script src="../../node_modules/angular-base64/angular-base64.js"></script>
+
 		<title>Administrador</title>
 	</head>
 	<body ng-controller = "AdminController">
@@ -33,13 +35,13 @@
 				<td class="text-center">{{item.name}}</td>
 				<td class="text-center">{{item.departamento}}</td>
 				<td class="text-center">
-					<button ng-click="" type="button" class="btn" data-title="Editar">Editar</button>
-					<button ng-click="" type="button" class="btn" data-title="Eliminar">Eliminar</button>
+					<button ng-click="" type="button" class="btn btn-success" data-title="Editar">Editar</button>
+					<button ng-click="" type="button" class="btn btn-danger" data-title="Eliminar">Eliminar</button>
 				</td>
 			</tbody>
 		</table>
 		<div class="footer-buttons">
-			<button ng-click="crear()" type="button" class="btn" data-title="Nuevo">Crear Usuario</button>
+			<button ng-click="crear()" type="button" class="btn btn-primary" data-title="Nuevo">Crear Usuario</button>
 		</div>
 	</body>
 </html>

@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller {
 
+	public function __construct()
+	{
+		$this->middleware('auth.basic');
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -16,7 +21,7 @@ class UsuarioController extends Controller {
 	public function index()
 	{
 		//Se muestran todos los usuarios
-		$data = DB::select('SELECT  users.id, users.name, departamentos.id, departamentos.name AS departamento  FROM users INNER JOIN departamentos ON departamentos.id = users.departamento_id');
+		$data = DB::select('SELECT  users.id, users.name, departamentos.id AS id_departamento, users.email, users.password, departamentos.name AS departamento  FROM users INNER JOIN departamentos ON departamentos.id = users.departamento_id');
 		if(!$data){
 			return response()->json(['No hay Usuarios',404],404);
 		}
@@ -53,7 +58,7 @@ class UsuarioController extends Controller {
 	{
 		//
 		if (!$request->get('name')) {
-			return response()->json(['faltan datos',202],202);
+			return response()->json(['faltan datos',422],422);
 		}
 		User::create($request->all());
 		return response()->json(['se ha creado al usuario'],200);
