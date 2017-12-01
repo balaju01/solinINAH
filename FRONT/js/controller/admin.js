@@ -12,9 +12,23 @@ app.controller('AdminController',['$scope','$log','$http','$base64',function($sc
     	}
   	}
 
+  	var req1 = {
+		method:"GET",
+    	url:"http://localhost/solin/solinRESTfullAPI/public/departamentos",
+    	headers: {
+    		authorization:"Basic YWRtaW46YWRtaW4="
+    		
+    
+    	}
+  	}
+
   	$scope.item = {
   		id: "",
-  		name: "",
+  		name: {
+  			n: "",
+  			p: "",
+  			m: ""
+  		},
   		id_departamento: 0,
   		departamento: "",
   		email: "",
@@ -32,8 +46,20 @@ app.controller('AdminController',['$scope','$log','$http','$base64',function($sc
       alert("Ha fallado la petición. Estado HTTP:"+status);
   	});
 
+  	var response=$http(req1);
+
+	response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
+      $scope.data1 = data[0];
+      console.log($scope.data1);
+      console.log($base64.encode('admin:admin'));
+    });
+    response.error(function(data, status, headers, config) {
+      alert("Ha fallado la petición. Estado HTTP:"+status);
+  	});
+
 	$scope.crear = function(){
-		console.log("si esta entrando");
+		console.log($scope.item.id_departamento);
+		console.log($scope.item);
 		req = {
 	        method: 'POST',
 	        url:"http://localhost/solin/solinRESTfullAPI/public/users",
@@ -41,7 +67,7 @@ app.controller('AdminController',['$scope','$log','$http','$base64',function($sc
 	          authorization:"Basic YWRtaW46YWRtaW4="
 	        },
 	        data: {
-	          name: $scope.item.name,
+	          name: $scope.item.name.n+" "+$scope.item.name.p+" "+$scope.item.name.m,
 	          departamento_id: $scope.item.id_departamento,
 	          email: $scope.item.email,
 	          password: $scope.item.password
@@ -59,9 +85,7 @@ app.controller('AdminController',['$scope','$log','$http','$base64',function($sc
         });
 	};
 
-	$scope.guardar = function(){
 
-	}
 
 }]);
 app.controller('AppCtrl',['$scope','$timeout', '$mdSidenav', function ($scope, $timeout, $mdSidenav) {

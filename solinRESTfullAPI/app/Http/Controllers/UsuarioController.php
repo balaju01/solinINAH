@@ -61,6 +61,8 @@ class UsuarioController extends Controller {
 		if (!$request->get('name')) {
 			return response()->json(['faltan datos',422],422);
 		}
+		$aux=$request->get('password');
+		$request->merge(['password'=>Hash::make($aux)]);
 		User::create($request->all());
 		return response()->json(['se ha creado al usuario'],200);
 	}

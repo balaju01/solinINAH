@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration {
 			$table->integer('departamento_id')->unsigned();
 			$table->string('email')->unique();
 			$table->string('password', 60);
+			$table->integer('rol');
 			$table->foreign('departamento_id')->references('id')->on('departamentos');
 			$table->timestamps();
 		});
