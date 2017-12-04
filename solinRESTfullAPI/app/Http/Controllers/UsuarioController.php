@@ -101,9 +101,32 @@ class UsuarioController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
 		//
+		$metodo =$request->method();
+		$data=User::find($id);
+		if ($metodo==="PATCH") {
+			$nombre=$request->get('name');
+			if ($nombre!=null && $nombre!='') {
+				$data->name=$nombre;
+			}
+			$email=$request->get('email');
+			if ($email!=null && $email!='') {
+				$data->email=$email;
+			}
+			$password=$request->get('password');
+			if ($password!=null && $password!='') {
+				$data->password=Hash::make($password);
+			}
+			$departamento_id=$request->get('departamento_id');
+			if ($departamento_id!=null && $departamento_id!='') {
+				$data->departamento_id=$departamento_id;
+			}
+			$data->save();
+			return response()->json(['Usuario editado exitosamente'],202);
+		}
+		return response()->json(['Datos invalidos',404],404);
 	}
 
 	/**
@@ -115,6 +138,12 @@ class UsuarioController extends Controller {
 	public function destroy($id)
 	{
 		//
+		$user=User::find($id);
+		if (!$user) {
+			return response()->json(['No se encontro al usuario',404],404);
+		}
+		$user->delete();
+		return response()->json(['Usuario eliminado exitosamente'],202);
 	}
 
 }
