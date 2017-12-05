@@ -31,7 +31,7 @@ Route::resource('proyectos','ProyectoController');
 Route::get('/proyectos/{proyectos}/saldo/periodo/{periodo}', 'ProyectoController@SaldoAsignadoProyecto');
 
 Route::resource('users.solins','SolinController');
-Route::get('/users/{users}/solins/estado/{estado}', 'SolinController@UsuarioEstado');
+Route::get('/departamento/{departamento}/solins/estado/{estado}', 'SolinController@DepartamentoEstado');
 Route::get('/solins/estado/{estado}', 'SolinController@Estado');
 
 Route::resource('periodos','PeriodoController');

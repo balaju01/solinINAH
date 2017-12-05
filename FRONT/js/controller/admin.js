@@ -1,4 +1,4 @@
-var app = angular.module("solin",['base64','ngMaterial']);
+
 app.controller('AdminController',['$scope','$log','$http','$base64',function($scope,$log,$http,$base64) {
 	
 	//Datos de conexion
