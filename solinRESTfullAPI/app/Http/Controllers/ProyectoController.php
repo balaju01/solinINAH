@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class ProyectoController extends Controller {
 
+	/*public function __construct()
+	{
+		$this->middleware('auth.basic');
+	}
 	/**
 	 * Display a listing of the resource.
 	 *

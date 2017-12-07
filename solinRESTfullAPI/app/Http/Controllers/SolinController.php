@@ -39,16 +39,16 @@ class SolinController extends Controller {
 
 	public function DepartamentoEstado($idDepartamento,$estado)
 	{
-		SELECT  solins.usuario_a_id, users.name FROM solins INNER JOIN users ON users.id = solins.usuario_a_id
+		
 		
 		$data = DB::select('SELECT solins.id, solins.folio, solins.proyecto_id, proyectos.name AS proyecto, departamentos.name AS departamento, solins.periodo_id, solins.monto, solins.descrpcion, solins.pago, solins.n_pago, solins.status FROM solins INNER JOIN proyectos ON proyectos.id = solins.proyecto_id INNER JOIN users ON users.id=solins.usuario_cr_id INNER JOIN departamentos ON users.departamento_id=departamentos.id WHERE users.departamento_id='+$idDepartamento+' AND solins.status='+$estado);
 		if (!$data) {
 			return response()->json(['No se encontro el Solin',404],404);
 		}
 		$data1 = DB::select('SELECT  solins.id, solins.usuario_cr_id, users.name FROM solins INNER JOIN users ON users.id = solins.usuario_cr_id WHERE users.departamento_id='+$idDepartamento+' AND solins.status='+$estado);
-		$data2 = DB::select('SELECT  solins.id, solins.usuario_c_id, users.name FROM solins INNER JOIN users ON users.id = solins.usuario_c_id WHERE solins.usuario_cr_id='+$+' AND solins.status='+$estado);
+		/*$data2 = DB::select('SELECT  solins.id, solins.usuario_c_id, users.name FROM solins INNER JOIN users ON users.id = solins.usuario_c_id WHERE solins.usuario_cr_id='+$+' AND solins.status='+$estado);
 		return response()->json([$data],200);
-		$data3 = DB::select('SELECT  solins.id, solins.usuario_a_id, users.name FROM solins INNER JOIN users ON users.id = solins.usuario_a_id WHERE solins.usuario_cr_id='+$+' AND solins.status='+$estado);
+		$data3 = DB::select('SELECT  solins.id, solins.usuario_a_id, users.name FROM solins INNER JOIN users ON users.id = solins.usuario_a_id WHERE solins.usuario_cr_id='+$+' AND solins.status='+$estado);*/
 
 	}
 
