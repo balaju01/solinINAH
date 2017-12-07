@@ -74,7 +74,7 @@
 				<div class="row form-group">
 					<label class="col-sm-4 col-form-label">TIPO DE GASTO:</label>
 					<div class="col-sm-8">
-						<select ng-model="proyecto_id" class="form-control" name="gasto" id="gasto">
+						<select ng-model="item.proyecto_id" class="form-control" name="gasto" id="gasto">
 							<option ng-repeat="(key, option) in data" value="{{option.id}}">{{option.name}}</option>
 						</select>
 					</div>
@@ -83,14 +83,14 @@
 				<div class="row form-group">
 					<label class="col-sm-4 col-form-label">SOLICITADO POR:</label>
 					<div class="col-sm-8">
-						<input class="form-control" type="text" name="solicitado" id="solicitado">
+						<input ng-model="item.user" class="form-control" type="text" name="solicitado" id="solicitado">
 					</div>
 				</div>
 
 				<div class=" row form-group">
 					<label class="col-sm-2 col-form-label">CARGO:</label>
 					<div class="col-sm-8">
-						<input class="form-control" type="text" name="cargo" id="cargo">
+						<input ng.model="item.cargo" class="form-control" type="text" name="cargo" id="cargo">
 					</div>
 					<div class="col-sm-2 text-center">
 						<label class="form-label">FIRMA: ___________________________</label>
@@ -100,14 +100,14 @@
 				<div class=" row form-group">
 					<label class="col-sm-5 col-form-label">COMPROBANTES ENTREGADOS:</label>
 					<div class="col-sm-7">
-						<select class="form-control" name="comprobante" id="comprobante">
-							<option>SIN COMPROBANTES</option>
-							<option>FACTURAS ORIGINALES</option>
+						<select ng-model="item.comprobante" class="form-control" name="comprobante" id="comprobante">
+							<option value="0">SIN COMPROBANTES</option>
+							<option value="1">FACTURAS ORIGINALES</option>
 						</select>
 					</div>
 				</div>
 
-				<div class=" row form-group">
+				<div ng-if="item.comprobante == 1" class=" row form-group">
 
 					<div class="col-sm-6 text-center">
 						<div class="row form-group">
@@ -165,7 +165,7 @@
 				<div class="row form-group">
 					<label class="col-sm-3 col-form-label">FORMA DE PAGO:</label>
 					<div class="col-sm-8">
-						<select class="form-control" name="pago" id="pago">
+						<select ng-model="item.pago" class="form-control" name="pago" id="pago">
 							<option>CHEQUE</option>
 							<option>FONDO REVOLVENTE</option>
 							<option>TRANSFERENCIA</option>
@@ -176,7 +176,7 @@
 				<div class="row form-group">
 					<label class="col-sm-3 col-form-label">A NOMBRE DE:</label>
 					<div class="col-sm-8">
-						<input class="form-control" type="text" name="aNombre" id="aNombre">
+						<input ng-model="item.n_pago" class="form-control" type="text" name="aNombre" id="aNombre">
 					</div>
 				</div>
 			</form>
@@ -186,6 +186,7 @@
 		<br>
 		<footer class="row">
 			<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RECIBÍ FECTIVO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AUTORIZO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FIRMA Y SELLO DE RECIBIDO</p>
+			<button ng-click="crear()" type="button" class="btn btn-success" data-title="guardar">Guardar</button>
 		</footer>
 
 	</div>

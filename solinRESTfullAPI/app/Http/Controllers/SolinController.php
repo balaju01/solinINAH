@@ -76,9 +76,15 @@ class SolinController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
 		//
+		if (!$request->get('folio')) {
+			return response()->json(['faltan datos',422],422);
+		}
+		
+		Solin::create($request->all());
+		return response()->json(['se ha creado al usuario'],200);
 	}
 
 	/**
