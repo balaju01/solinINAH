@@ -1,43 +1,46 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta name="tipo_contenido"  content="text/html;" http-equiv="content-type" charset="utf-8">
+<html ng-app="BasicHttpAuthExample">
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS Basic HTTP Authentication Example</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    
+  </head>
 
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <body>
+  
+    <div class="jumbotron">
+      <div class="container">
+        <div class="col-xs-offset-2 col-xs-8">
+          <div ng-view></div>
+        </div>
+      </div>
+    </div>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ 
 
+    <div class="credits text-center">
+      <p>
+          <a href="http://jasonwatmore.com/post/2014/05/26/AngularJS-Basic-HTTP-Authentication-Example.aspx">AngularJS Basic HTTP Authentication Example</a>
+      </p>
+      <p>
+        <a href="http://jasonwatmore.com">JasonWatmore.com</a>
+      </p>
+    </div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-	<title>Log In</title>
-</head>
-<body class="container-fluid">
-	<div id="b1" name="b1" class="container col-sm-0 col-md-2"></div>
-	<div name="contenido" id="contenido" class="container col-sm-12 col-md-8">
-		
-	
-			<div class="card bordered z-depth-2" style="margin: 20% auto; max-width: 400px;">
-				<div class="card-content">
-					<div class="m-b-30">
-						<div class="card-title strong pink-text">LOGIN</div>
-						<p class="card-title-desc">Bienvenido al sisitema SOLIN INAH</p>
-					</div>
-					<form class="form-floating">
-						<div class="form-group">
-							<label for="exampleInputEmail1" class="control-label">Usuario</label>
-	    					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Usuario">
-	    					
-						</div>
-						<div class="form-group">
-							<label for="exampleInputPassword1" class="control-label">Password</label>
-	    					<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-						</div>
-						<button type="submit" class="btn btn-primary">Enviar</button>
-					</form>
-				</div>
-			</div>
-		
-	<div id="b2" name="b2" class="container col-sm-0 col-md-2"></div>
-</body>
+
+    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//code.angularjs.org/1.2.20/angular.js"></script>
+    <script src="//code.angularjs.org/1.2.20/angular-route.js"></script>
+    <script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script>
+    <script src="./app.js"></script>
+    <script src="./js/controller/services.js"></script>
+    <script src="./js/controller/login.js"></script>
+    <script src="./js/controller/home.js"></script>
+    <script type="text/javascript" src="./lib/js/bootstrap.min.js"></script>
+    <script src="./node_modules/angular-base64/angular-base64.js"></script>
+    
+  </body>
+
 </html>
