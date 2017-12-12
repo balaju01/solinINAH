@@ -22,10 +22,32 @@ angular.module('Authentication')
 
             /* Use this for real authentication
              ----------------------------------------------*/
-            $http.post('/api/authenticate', { username: username, password: password })
+            var authdata = base64.encode(username + ':' + password);
+            var req = {
+                method:"GET",
+                url:"http://localhost/solin/solinRESTfullAPI/public/user/"+username,
+                headers: {
+                    authorization:"Basic "+authdata
+                    
+            
+                }
+            }
+            console.log(authdata);
+            var response=$http(req);
+
+            response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
+              var data = data;
+              console.log(data);
+              callback(response);
+              //console.log($base64.encode('admin:admin'));
+            });
+            response.error(function(data, status, headers, config) {
+              alert("Ha fallado la petición. Estado HTTP:"+status);
+            });
+            /*$http.post('http://localhost/solin/solinRESTfullAPI/public/', { username: username, password: password })
                 .success(function (response) {
                     callback(response);
-                });
+                });*/
 
         };
  
