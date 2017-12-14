@@ -2,6 +2,8 @@
 
 return [
 
+	'env' => env('APP_ENV', 'production'),
+
 	/*
 	|--------------------------------------------------------------------------
 	| Application Debug Mode
@@ -135,7 +137,7 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
-
+		'Illuminate\Broadcasting\BroadcastServiceProvider',
 		/*
 		 * Application Service Providers...
 		 */
@@ -144,7 +146,8 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
-		Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+		' Tymon \ JWTAuth \ Providers \ JWTAuthServiceProvider ',
+    	Barryvdh\Cors\ServiceProvider::class
 		
 
 	],
@@ -194,8 +197,8 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-		'JWTAuth'   => Tymon\JWTAuthFacades\JWTAuth::class,
-		'JWTFactory' => Tymon\JWTAuthFacades\JWTFactory::class
+		' JWTAuth '  =>  ' Tymon \ JWTAuth \ Facades \ JWTAuth ',
+    	' JWTFactory '  =>  ' Tymon \ JWTAuth \ Facades \ JWTFactory '
 
 	],
 
