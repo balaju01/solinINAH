@@ -1,4 +1,6 @@
-app.controller('SolinController',['$scope','$log','$http','$base64',function($scope,$log,$http,$base64) {
+'use strict';
+ 
+angular.module('solin').controller('SolinController',['$scope','$log','$http','$base64',function($scope,$log,$http,$base64) {
 	$scope.item = {
       id: "",
       folio: "",

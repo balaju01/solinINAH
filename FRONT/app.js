@@ -1,46 +1,55 @@
-var app = angular.module("solin",['base64','ngMaterial']);
 'use strict';
-
-// declare modules
-angular.module('Authentication', []);
-angular.module('Home', []);
-
-angular.module('BasicHttpAuthExample', [
-    'Authentication',
-    'Home',
+var app = angular.module("solin",[
+    'authService',
+    'base64',
     'ngRoute',
-    'ngCookies'
+    'ngCookies',
+    'satellizer',
+    'toastr'
 ])
  
-.config(['$routeProvider', function ($routeProvider) {
+.config(['$routeProvider', '$authProvider', function ($routeProvider,$authProvider) {
+
+    $authProvider.loginUrl = 'http://localhost/solin/laravel5-5/public/api/auth_login';
 
     $routeProvider
         .when('/login', {
             controller: 'LoginController',
             templateUrl: './views/login.html',
-            hideMenus: true
+            hideMenus: true,
+            controllerAs: 'login'
         })
  
         .when('/', {
             controller: 'HomeController',
             templateUrl: './views/home.html'
         })
+
+        .when('/admin', {
+            controller: 'AdminController',
+            templateUrl: './views/admin/admin.html'
+        })
  
         .otherwise({ redirectTo: '/login' });
 }])
  
-.run(['$rootScope', '$location', '$cookieStore', '$http',
-    function ($rootScope, $location, $cookieStore, $http) {
-        // keep user logged in after page refresh
-        $rootScope.globals = $cookieStore.get('globals') || {};
-        if ($rootScope.globals.currentUser) {
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-        }
- 
-        $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            // redirect to login page if not logged in
-            if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
+.run(['$rootScope', '$location', '$cookieStore', '$http', function ($rootScope, $location, $cookieStore, $http, authUser) {
+    var rutasPrivadas = ['/', '/admin'];
+    $rootScope.$on('$routeChangeStart',function(){
+        if(($.inArray($location.path(), rutasPrivadas) !== -1) ){
+            //toastr.info('Debe iniciar sesion para continuar.','Mensaje');
+            if (!$rootScope.isLoggedIn) {
+                console.log('no mames');
+                console.log($rootScope.isLoggedIn);
+                console.log('Debe iniciar sesion para continuar');
                 $location.path('/login');
             }
-        });
-    }]);
+            
+        }
+        else{
+            if ($rootScope.isLoggedIn) {
+                console.log('si se pudo')
+            }
+        }
+    });
+}]);

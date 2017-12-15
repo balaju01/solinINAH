@@ -1,9 +1,7 @@
 'use strict';
  
-angular.module('Home')
+angular.module('solin')
  
-.controller('HomeController',
-    ['$scope',
-    function ($scope) {
-      
+.controller('HomeController',['$scope', '$rootScope', function ($scope,$rootScope) {
+      console.log($rootScope.user);
     }]);

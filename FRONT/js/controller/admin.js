@@ -1,5 +1,6 @@
-
-app.controller('AdminController',['$scope','$log','$http','$base64',function($scope,$log,$http,$base64) {
+'use strict';
+ 
+angular.module('solin').controller('AdminController',['$scope','$log','$http','$base64',function($scope,$log,$http,$base64) {
 	
 	//Datos de conexion
 	var req = {
@@ -134,14 +135,4 @@ app.controller('AdminController',['$scope','$log','$http','$base64',function($sc
         });
 	};
 
-}]);
-app.controller('AppCtrl',['$scope','$timeout', '$mdSidenav', function ($scope, $timeout, $mdSidenav) {
-    $scope.toggleLeft = buildToggler('left');
-    $scope.toggleRight = buildToggler('right');
-
-    function buildToggler(componentId) {
-      return function() {
-        $mdSidenav(componentId).toggle();
-      };
-    }
 }]);

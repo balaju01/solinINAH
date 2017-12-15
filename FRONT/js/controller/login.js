@@ -1,10 +1,16 @@
 'use strict';
  
-angular.module('Authentication')
- 
-.controller('LoginController',
-    ['$scope', '$rootScope', '$location', 'AuthenticationService',
-    function ($scope, $rootScope, $location, AuthenticationService) {
+angular.module('solin').controller('LoginController',['$scope', '$rootScope', '$location', 'authUser', function ($scope, $rootScope, $location, authUser) {
+    
+    $scope.loginForm = {
+        email: '',
+        password: ''
+    };
+
+    $scope.login = function(){
+        authUser.loginApi($scope.loginForm);
+    };
+        /*
         // reset login status
         AuthenticationService.ClearCredentials();
  
@@ -19,5 +25,5 @@ angular.module('Authentication')
                     $scope.dataLoading = false;
                 }
             });
-        };
+        };*/
     }]);
