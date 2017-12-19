@@ -41,8 +41,8 @@ angular.module('authService',[])
 						$location.path('/')
 						console.log(response);
 						$rootScope.isLoggedIn = true;
-						$rootScope.user.id = response.data.user.id;
-						$rootScope.user.rol = response.data.user.rol;
+						$rootScope.user = response.data.user;
+						
 					},
 					function(error){
 						console.log(error);
@@ -60,6 +60,12 @@ angular.module('authService',[])
 		return {
 			loginApi: function(loginForm){
 				login(loginForm);
+			},
+			logout: function(){
+				$auth.logout();
+				unCacheSession();
+				console.log("se termino el show");
+				$location.path('/login');
 			},
 			isLoggedIn: function(){
 				return sesionControl.get('userIsLogin') !==  null;

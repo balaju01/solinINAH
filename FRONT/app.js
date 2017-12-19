@@ -4,8 +4,7 @@ var app = angular.module("solin",[
     'base64',
     'ngRoute',
     'ngCookies',
-    'satellizer',
-    'toastr'
+    'satellizer'
 ])
  
 .config(['$routeProvider', '$authProvider', function ($routeProvider,$authProvider) {

@@ -1,0 +1,14 @@
+{
+  "requires": true,
+  "lockfileVersion": 1,
+  "dependencies": {
+    "angular": {
+      "integrity": "sha1-D4mDfa4XdrAcyx+iCW2w2Tc9mJc=",
+      "resolved": "https://registry.npmjs.org/angular/-/angular-1.6.7.tgz",
+      "version": "1.6.7"
+    },
+    "angular-base64": "^2.0.5",
+    "satellizer": "^0.15.5",
+    "toastr": "^2.1.4"
+  }
+}
