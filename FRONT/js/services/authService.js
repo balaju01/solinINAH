@@ -41,7 +41,7 @@ angular.module('authService',[])
 						$location.path('/')
 						console.log(response);
 						$rootScope.isLoggedIn = true;
-						$rootScope.user = response.data.user;
+						$rootScope.users = response.data.user;
 						
 					},
 					function(error){

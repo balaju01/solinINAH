@@ -8,12 +8,12 @@
 				<th class="text-center">Acciones</th>
 			</tr>
 		</thead>
-		<tbody ng-repeat = "(key, item) in data">
+		<tbody ng-repeat = "(key, item) in data" >
 			<td class="text-center">{{item.id}}</td>
 			<td class="text-center">{{item.name}}</td>
 			<td class="text-center">{{item.departamento}}</td>
-			<td class="text-center">
-				<button ng-click="" type="button" class="btn btn-success" data-title="Editar">Editar</button>
+			<td class="text-center" ng-click = "user=item">
+				<button ng-click="abrirForm()" type="button" class="btn btn-success" data-title="Editar">Editar</button>
 				<button ng-click="" type="button" class="btn btn-danger" data-title="Eliminar">Eliminar</button>
 			</td>
 		</tbody>

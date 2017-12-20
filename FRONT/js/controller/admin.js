@@ -1,6 +1,6 @@
 'use strict';
  
-angular.module('solin').controller('AdminController',['$scope','$log','$http','$base64','$rootScope',function($scope,$log,$http,$base64,$rootScope) {
+angular.module('solin').controller('AdminController',['$scope','$log','$http','$base64','$rootScope','$location',function($scope,$log,$http,$base64,$rootScope,$location) {
 	
 	//Datos de conexion
 	var req = {
@@ -15,7 +15,7 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
     	
   	}
 
-  	$scope.item = {
+  	$scope.user = {
   		id: "",
   		name: {
   			n: "",
@@ -33,7 +33,7 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 
 	response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
       $scope.data = data[0];
-      console.log($scope.data);
+      //console.log($scope.data);
       
     });
     response.error(function(data, status, headers, config) {
@@ -44,12 +44,19 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 
 	response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
       $scope.data1 = data[0];
-      console.log($scope.data1);
+      //console.log($scope.data1);
       
     });
     response.error(function(data, status, headers, config) {
       alert("Ha fallado la petición. Estado HTTP:"+status);
   	});
+
+
+  	$scope.abrirForm = function(){
+  		console.log($scope.user);
+  		//$location.path('/adminForm');
+  	};
+
     //funcion para crear nuevo usuario
 	$scope.crear = function(){
 		console.log($scope.item.id_departamento);
@@ -80,7 +87,7 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 	$scope.update = function(){
 		req = {
 	        method: 'PATCH',
-	        url:$rootScope.ruta+"users/"+,
+	        url:$rootScope.ruta+"users/"+1,
 	        
 	        data: {
 	          name: $scope.item.name.n+" "+$scope.item.name.p+" "+$scope.item.name.m,
@@ -104,7 +111,7 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 	$scope.delete  = function(){
 		req = {
 	        method: 'DELETE',
-	        url:$rootScope.ruta+"users/"+,
+	        url:$rootScope.ruta+"users/"+1,
 	       
 	        
 	    }

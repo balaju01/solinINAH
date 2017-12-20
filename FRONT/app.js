@@ -33,12 +33,17 @@ var app = angular.module("solin",[
             controller: 'UsuarioController',
             templateUrl: './views/usuario/usuario.html'
         })
+
+        .when('/adminForm', {
+            controller: 'AdminController',
+            templateUrl: './views/admin/form.html'
+        })
  
         .otherwise({ redirectTo: '/login' });
 }])
  
 .run(['$rootScope', '$location', '$cookieStore', '$http', function ($rootScope, $location, $cookieStore, $http, authUser) {
-    var rutasPrivadas = ['/', '/admin', '/usuario'];
+    var rutasPrivadas = ['/', '/admin', '/usuario','/adminForm'];
     $rootScope.$on('$routeChangeStart',function(){
         if(($.inArray($location.path(), rutasPrivadas) !== -1) ){
             //toastr.info('Debe iniciar sesion para continuar.','Mensaje');
