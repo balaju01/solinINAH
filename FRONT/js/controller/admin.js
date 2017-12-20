@@ -1,26 +1,18 @@
 'use strict';
  
-angular.module('solin').controller('AdminController',['$scope','$log','$http','$base64',function($scope,$log,$http,$base64) {
+angular.module('solin').controller('AdminController',['$scope','$log','$http','$base64','$rootScope',function($scope,$log,$http,$base64,$rootScope) {
 	
 	//Datos de conexion
 	var req = {
 		method:"GET",
-    	url:"http://localhost/solin/solinRESTfullAPI/public/users",
-    	headers: {
-    		authorization:"Basic YWRtaW46YWRtaW4="
-    		
-    
-    	}
+    	url: $rootScope.ruta+"users",
+    	
   	}
 
   	var req1 = {
 		method:"GET",
-    	url:"http://localhost/solin/solinRESTfullAPI/public/departamentos",
-    	headers: {
-    		authorization:"Basic YWRtaW46YWRtaW4="
-    		
-    
-    	}
+    	url: $rootScope.ruta+"departamentos",
+    	
   	}
 
   	$scope.item = {
@@ -34,39 +26,38 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
   		departamento: "",
   		email: "",
   		password: "",
+  		rol: ""
   	};
-
+  	//peticion para recuperar todos los usuarios
 	var response=$http(req);
 
 	response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
       $scope.data = data[0];
       console.log($scope.data);
-      console.log($base64.encode('admin:admin'));
+      
     });
     response.error(function(data, status, headers, config) {
       alert("Ha fallado la petición. Estado HTTP:"+status);
   	});
-
+    //peticion para recuperar todos los departamentos
   	var response=$http(req1);
 
 	response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
       $scope.data1 = data[0];
       console.log($scope.data1);
-      console.log($base64.encode('admin:admin'));
+      
     });
     response.error(function(data, status, headers, config) {
       alert("Ha fallado la petición. Estado HTTP:"+status);
   	});
-
+    //funcion para crear nuevo usuario
 	$scope.crear = function(){
 		console.log($scope.item.id_departamento);
 		console.log($scope.item);
 		req = {
 	        method: 'POST',
-	        url:"http://localhost/solin/solinRESTfullAPI/public/users",
-	        headers: {
-	          authorization:"Basic YWRtaW46YWRtaW4="
-	        },
+	        url:$rootScope.ruta+"users",
+	        
 	        data: {
 	          name: $scope.item.name.n+" "+$scope.item.name.p+" "+$scope.item.name.m,
 	          departamento_id: $scope.item.id_departamento,
@@ -85,14 +76,12 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
           alert("Ha fallado la petición. Estado HTTP:"+status);
         });
 	};
-
+	//Funcion para actualizar un usuario
 	$scope.update = function(){
 		req = {
 	        method: 'PATCH',
-	        url:"http://localhost/solin/solinRESTfullAPI/public/users/2",
-	        headers: {
-	          authorization:"Basic YWRtaW46YWRtaW4="
-	        },
+	        url:$rootScope.ruta+"users/"+,
+	        
 	        data: {
 	          name: $scope.item.name.n+" "+$scope.item.name.p+" "+$scope.item.name.m,
 	          departamento_id: $scope.item.id_departamento,
@@ -111,18 +100,13 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
           alert("Ha fallado la petición. Estado HTTP:"+status);
         });
 	};
-
+	//Funcion para eliminar usuarios
 	$scope.delete  = function(){
 		req = {
 	        method: 'DELETE',
-	        url:"http://localhost/solin/solinRESTfullAPI/public/users/9",
-	        headers: {
-	          authorization:"Basic YWRtaW46YWRtaW4="
-	        },
-	        data: {
-	          
-	          
-	        }
+	        url:$rootScope.ruta+"users/"+,
+	       
+	        
 	    }
 	    $http(req)
         .success(function (response) {//'response' es el objeto que devuelve el servicio web

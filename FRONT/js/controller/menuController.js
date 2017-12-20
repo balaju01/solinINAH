@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('apiFrontApp').controller('MenuCtrl', function(authUser,$location,$rootScope) {
+angular.module('solin').controller('MenuCtrl', function(authUser,$location,$rootScope) {
 
 	$scope.isLogin = authUser.isLoggedIn();
 
