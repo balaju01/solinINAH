@@ -13,9 +13,12 @@
 			<td class="text-center">{{item.name}}</td>
 			<td class="text-center">{{item.departamento}}</td>
 			<td class="text-center" ng-click = "user=item">
-				<button ng-click="abrirForm()" type="button" class="btn btn-success" data-title="Editar">Editar</button>
+				<button ng-click="abrirForm(2)" type="button" class="btn btn-success" data-title="Editar">Editar</button>
 				<button ng-click="" type="button" class="btn btn-danger" data-title="Eliminar">Eliminar</button>
 			</td>
 		</tbody>
 	</table>
+	<div class="footer-buttons">
+		<button ng-click="abrirForm(1)" type="button" class="btn btn-primary" data-title="Nuevo">Crear Usuario</button>
+	</div>
  </div>

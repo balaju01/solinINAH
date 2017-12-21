@@ -58,9 +58,20 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
   	};
 
     //funcion para crear nuevo usuario
+    $scope.abrirForm = function(option){
+    	$location.path('/adminForm');
+		$scope.formOption = option;
+		console.log(option);
+    };
+
 	$scope.crear = function(){
 		console.log($scope.item.id_departamento);
 		console.log($scope.item);
+
+		if ($scope.item.id_departamento != 1) {
+			$scope.item.rol = 2;
+		};
+		
 		req = {
 	        method: 'POST',
 	        url:$rootScope.ruta+"users",
@@ -69,18 +80,20 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 	          name: $scope.item.name.n+" "+$scope.item.name.p+" "+$scope.item.name.m,
 	          departamento_id: $scope.item.id_departamento,
 	          email: $scope.item.email,
-	          password: $scope.item.password
-	          
+	          password: $scope.item.password,
+	          rol: $scope.item.rol
 	        }
 	    }
 	    $http(req)
         .success(function (response) {//'response' es el objeto que devuelve el servicio web
           console.log(response);
+          $location.path('/admin');
           
         })
         .error(function (response){
           console.log(response);
           alert("Ha fallado la petición. Estado HTTP:"+status);
+          $location.path('/admin');
         });
 	};
 	//Funcion para actualizar un usuario
