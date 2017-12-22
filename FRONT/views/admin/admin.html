@@ -8,17 +8,17 @@
 				<th class="text-center">Acciones</th>
 			</tr>
 		</thead>
-		<tbody ng-repeat = "(key, item) in data" >
+		<tbody ng-repeat = "(key, item) in data" ng-click="item.selected=!item.selected">
 			<td class="text-center">{{item.id}}</td>
 			<td class="text-center">{{item.name}}</td>
 			<td class="text-center">{{item.departamento}}</td>
-			<td class="text-center" ng-click = "user=item">
-				<button ng-click="abrirForm(2)" type="button" class="btn btn-success" data-title="Editar">Editar</button>
+			<td class="text-center">
+				<button ng-click="abrirForm(0,item)" type="button" class="btn btn-success" data-title="Editar">Editar</button>
 				<button ng-click="" type="button" class="btn btn-danger" data-title="Eliminar">Eliminar</button>
 			</td>
 		</tbody>
 	</table>
 	<div class="footer-buttons">
-		<button ng-click="abrirForm(1)" type="button" class="btn btn-primary" data-title="Nuevo">Crear Usuario</button>
+		<button ng-click="abrirForm(1,item)" type="button" class="btn btn-primary" data-title="Nuevo">Crear Usuario</button>
 	</div>
  </div>

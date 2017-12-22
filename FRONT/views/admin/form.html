@@ -3,16 +3,9 @@
 	<form>
 		<div class="form-group">
 			<label>Nombre</label>
-			<input type="text" name="nombre" ng-model="item.name.n">
+			<input type="text" name="nombre" ng-model="item.name">
 		</div>
-		<div class="form-group">
-			<label>Apellido Parterno</label>
-			<input type="text" name="nombre" ng-model="item.name.p">
-		</div>
-		<div class="form-group">
-			<label>Apellido Materno</label>
-			<input type="text" name="nombre" ng-model="item.name.m">
-		</div>
+		
 		<div class="form-group">
 			<label>Usuario</label>
 			<input type="text" name="email" ng-model="item.email">
@@ -23,14 +16,14 @@
 		</div>
 		<div class="form-group">
 			<label>Departamento</label>
-			<select  ng-model="item.id_departamento">
+			<select  ng-model="item.departamento_id">
 				<option ng-repeat="(key, option) in data1" value="{{option.id}}">{{option.name}}</option>
 			</select>
 		</div>
 		
 	</form>
 	<div ng-switch="formOption">
-		<button ng-click="crear()" type="button" class="btn btn-success" data-title="guardar">Guardar</button>
-		<button ng-click="update()" type="button" class="btn btn-success" data-title="guardar">Guardar cambios</button>
+		<button ng-show = "formOption" ng-click="crear()" type="button" class="btn btn-success" data-title="guardar">Guardar</button>
+		<button ng-show = "!formOption" ng-click="update()" type="button" class="btn btn-success" data-title="guardar">Guardar cambios</button>
 	</div>
 </div>

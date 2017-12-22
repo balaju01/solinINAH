@@ -15,19 +15,18 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
     	
   	}
 
-  	$scope.user = {
+  	$scope.item = {
   		id: "",
-  		name: {
-  			n: "",
-  			p: "",
-  			m: ""
-  		},
+  		names: "",
   		id_departamento: 0,
   		departamento: "",
   		email: "",
   		password: "",
   		rol: ""
   	};
+  	$scope.item = $rootScope.item;
+  	$scope.formOption = $rootScope.option;
+
   	//peticion para recuperar todos los usuarios
 	var response=$http(req);
 
@@ -52,23 +51,31 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
   	});
 
 
-  	$scope.abrirForm = function(){
-  		console.log($scope.user);
-  		//$location.path('/adminForm');
-  	};
+  	
 
     //funcion para crear nuevo usuario
-    $scope.abrirForm = function(option){
+    $scope.abrirForm = function(option,item){
     	$location.path('/adminForm');
-		$scope.formOption = option;
+		$rootScope.option = option;
 		console.log(option);
+		console.log(item);
+		if(option == 1){
+			$rootScope.item = "";
+			$scope.item = "";
+		}
+		else{
+			$rootScope.item = item;
+			$scope.item = item;
+		};
+		
+		console.log($scope.item);
     };
 
 	$scope.crear = function(){
 		console.log($scope.item.id_departamento);
-		console.log($scope.item);
+		console.log($rootScope.item);
 
-		if ($scope.item.id_departamento != 1) {
+		/*if ($scope.item.id_departamento != 1) {
 			$scope.item.rol = 2;
 		};
 		
@@ -78,7 +85,7 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 	        
 	        data: {
 	          name: $scope.item.name.n+" "+$scope.item.name.p+" "+$scope.item.name.m,
-	          departamento_id: $scope.item.id_departamento,
+	          departamento_id: $scope.item.departamento_id,
 	          email: $scope.item.email,
 	          password: $scope.item.password,
 	          rol: $scope.item.rol
@@ -94,17 +101,17 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
           console.log(response);
           alert("Ha fallado la petición. Estado HTTP:"+status);
           $location.path('/admin');
-        });
+        });*/
 	};
 	//Funcion para actualizar un usuario
 	$scope.update = function(){
 		req = {
 	        method: 'PATCH',
-	        url:$rootScope.ruta+"users/"+1,
+	        url:$rootScope.ruta+"users/"+$scope.item.id,
 	        
 	        data: {
-	          name: $scope.item.name.n+" "+$scope.item.name.p+" "+$scope.item.name.m,
-	          departamento_id: $scope.item.id_departamento,
+	          name: $scope.item.name,
+	          departamento_id: $scope.item.departamento_id,
 	          email: $scope.item.email,
 	          password: $scope.item.password
 	          
