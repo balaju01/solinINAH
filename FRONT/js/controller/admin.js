@@ -18,7 +18,7 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
   	$scope.item = {
   		id: "",
   		names: "",
-  		id_departamento: 0,
+  		departamento_id: 0,
   		departamento: "",
   		email: "",
   		password: "",
@@ -51,9 +51,13 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
   	});
 
 
-  	
+  	$scope.cancelar = function(){
+  		$rootScope.item = "";
+		$scope.item = "";
+		$location.path('/admin');
+  	};
 
-    //funcion para crear nuevo usuario
+    //funcion para abrir formulario de edicion o creacion
     $scope.abrirForm = function(option,item){
     	$location.path('/adminForm');
 		$rootScope.option = option;
@@ -65,17 +69,19 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 		}
 		else{
 			$rootScope.item = item;
+			$rootScope.item.password = "";
 			$scope.item = item;
 		};
 		
 		console.log($scope.item);
     };
 
+    //funcion para crear nuevo usuario
 	$scope.crear = function(){
 		console.log($scope.item.id_departamento);
 		console.log($rootScope.item);
 
-		/*if ($scope.item.id_departamento != 1) {
+		if ($scope.item.id_departamento != 1) {
 			$scope.item.rol = 2;
 		};
 		
@@ -101,10 +107,14 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
           console.log(response);
           alert("Ha fallado la petición. Estado HTTP:"+status);
           $location.path('/admin');
-        });*/
+        });
 	};
+
+
 	//Funcion para actualizar un usuario
 	$scope.update = function(){
+		$scope.item = $rootScope.item;
+
 		req = {
 	        method: 'PATCH',
 	        url:$rootScope.ruta+"users/"+$scope.item.id,
@@ -120,13 +130,17 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 	    $http(req)
         .success(function (response) {//'response' es el objeto que devuelve el servicio web
           console.log(response);
+          $location.path('/admin');
           
         })
         .error(function (response){
           console.log(response);
           alert("Ha fallado la petición. Estado HTTP:"+status);
+          $location.path('/admin');
         });
 	};
+
+
 	//Funcion para eliminar usuarios
 	$scope.delete  = function(){
 		req = {
@@ -138,11 +152,12 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 	    $http(req)
         .success(function (response) {//'response' es el objeto que devuelve el servicio web
           console.log(response);
-          
+          $location.path('/admin');
         })
         .error(function (response){
           console.log(response);
           alert("Ha fallado la petición. Estado HTTP:"+status);
+
         });
 	};
 

@@ -16,7 +16,7 @@
 		</div>
 		<div class="form-group">
 			<label>Departamento</label>
-			<select  ng-model="item.departamento_id">
+			<select  ng-model="item.id_departamento">
 				<option ng-repeat="(key, option) in data1" value="{{option.id}}">{{option.name}}</option>
 			</select>
 		</div>
@@ -25,5 +25,6 @@
 	<div ng-switch="formOption">
 		<button ng-show = "formOption" ng-click="crear()" type="button" class="btn btn-success" data-title="guardar">Guardar</button>
 		<button ng-show = "!formOption" ng-click="update()" type="button" class="btn btn-success" data-title="guardar">Guardar cambios</button>
+		<button ng-click="cancelar()" type="button" class="btn btn-success" data-title="cancelarr">Cancelar</button>
 	</div>
 </div>
