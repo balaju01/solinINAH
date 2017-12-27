@@ -1,4 +1,19 @@
+
 <div class="container" ng-controller="UsuarioController">
+	<div id="main">
+
+  		<nav class="{{active}}" ng-click="$event.preventDefault()">
+		   <a ng-click="" class="home" ng-click="active='home'">Home</a>
+		   <a ng-show="rol == 2" ng-click="solinNuevo()" class="btn btn-succes" ng-click="active='solin'">Nuevo Solin</a>
+		   <a ng-show="rol != 2" ng-click="" class="btn btn-succes" ng-click="active='projects'">Crear Proyecto</a>
+		   <a ng-show="rol != 2" ng-click="nuevoDepto()" class="btn btn-succes" ng-click="active='depto'">Crear Departamento</a>
+		   <a ng-show="rol != 2" ng-click="verDepto()" class="btn btn-succes" ng-click="active='deptoV'">Ver Departamentos</a>
+		   <a ng-show="rol != 2" ng-click="" class="btn btn-succes" ng-click="active='services'">Asignar Recurso a Periodo</a>
+		   <a ng-show="rol != 2" ng-click="" class="btn btn-succes" ng-click="active='contact'">Asignar Recurso a Proyecto</a>
+		   <a ng-show="rol == 2" ng-click="" class="btn btn-succes" ng-click="active='deptos'">Ver Recurso del Departamento</a>
+ 		</nav>
+
+	</div>
 	<div class="row">
 		<div class="col-sm-6">
 			<h3>Solines sin aprobar</h3>

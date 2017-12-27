@@ -79,9 +79,16 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
     //funcion para crear nuevo usuario
 	$scope.crear = function(){
 		console.log($scope.item.id_departamento);
-		console.log($rootScope.item);
+		console.log($scope.item);
 
-		if ($scope.item.id_departamento != 1) {
+
+		if ($scope.item.departamento_id == 1 ) {
+			$scope.item.rol = 1;
+		}
+		else if ($scope.item.departamento_id == 2 || $scope.item.departamento_id == 3) {
+			$scope.item.rol = 3;
+		}
+		else{
 			$scope.item.rol = 2;
 		};
 		
@@ -90,7 +97,7 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 	        url:$rootScope.ruta+"users",
 	        
 	        data: {
-	          name: $scope.item.name.n+" "+$scope.item.name.p+" "+$scope.item.name.m,
+	          name: $scope.item.name,
 	          departamento_id: $scope.item.departamento_id,
 	          email: $scope.item.email,
 	          password: $scope.item.password,
@@ -142,17 +149,17 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 
 
 	//Funcion para eliminar usuarios
-	$scope.delete  = function(){
+	$scope.delete  = function(item){
 		req = {
 	        method: 'DELETE',
-	        url:$rootScope.ruta+"users/"+1,
+	        url:$rootScope.ruta+"users/"+item.id,
 	       
 	        
 	    }
 	    $http(req)
         .success(function (response) {//'response' es el objeto que devuelve el servicio web
           console.log(response);
-          $location.path('/admin');
+          $location.path('/home');
         })
         .error(function (response){
           console.log(response);

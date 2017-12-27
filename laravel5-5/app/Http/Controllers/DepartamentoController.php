@@ -43,9 +43,11 @@ class DepartamentoController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
 		//
+		Departamento::create($request->all());
+		return response()->json(['se ha creado al usuario'],200);
 	}
 
 	/**

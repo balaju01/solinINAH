@@ -18,6 +18,14 @@ class DepartamentoSeeder extends Seeder
         	[
         		'name' => 'Administracion',
         		'seudonimo' => 'admin',
+        	],
+        	[
+        		'name' => 'Recursos Financieros',
+        		'seudonimo' => 'RecFin',
+        	],
+        	[
+        		'name' => 'Subdirección Administrativa',
+        		'seudonimo' => 'SubAdm',
         	]
         ];
 

@@ -38,12 +38,21 @@ var app = angular.module("solin",[
             controller: 'AdminController',
             templateUrl: './views/admin/form.html'
         })
+
+        .when('/deptoForm', {
+            controller: 'DeptoController',
+            templateUrl: './views/departamento/deptoForm.html'
+        })
+        .when('/depto', {
+            controller: 'DeptoController',
+            templateUrl: './views/departamento/depto.html'
+        })
  
         .otherwise({ redirectTo: '/login' });
 }])
  
 .run(['$rootScope', '$location', '$cookieStore', '$http', function ($rootScope, $location, $cookieStore, $http, authUser) {
-    var rutasPrivadas = ['/', '/admin', '/usuario','/adminForm'];
+    var rutasPrivadas = ['/', '/admin', '/usuario','/adminForm','/deptoForm','/depto'];
     $rootScope.$on('$routeChangeStart',function(){
         if(($.inArray($location.path(), rutasPrivadas) !== -1) ){
             //toastr.info('Debe iniciar sesion para continuar.','Mensaje');
