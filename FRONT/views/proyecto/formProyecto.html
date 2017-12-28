@@ -1,0 +1,25 @@
+<div ng-controller = "ProyectoController">
+	<form>
+		<div class="form-group">
+			<label>Nombre del Proyecto</label>
+			<input type="text" name="nombre" ng-model="item.name">
+		</div>
+		
+		<div class="form-group">
+			<label>Clave</label>
+			<input type="text" name="email" ng-model="item.clave">
+		</div>
+
+		<div class="form-group">
+			<label>Saldo</label>
+			<input type="number" name="email" ng-model="item.saldo">
+		</div>
+		
+		
+	</form>
+	<div ng-switch="formOption">
+		<button ng-click="crear()" type="button" class="btn btn-success" data-title="guardar">Guardar</button>
+		
+		<button ng-click="cancelar()" type="button" class="btn btn-success" data-title="cancelarr">Cancelar</button>
+	</div>
+</div>

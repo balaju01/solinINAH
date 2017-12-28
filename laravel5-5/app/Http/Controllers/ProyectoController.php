@@ -37,6 +37,15 @@ class ProyectoController extends Controller {
 		return response()->json([$data],200);
 	}
 
+	public function ProyectosDepartamento($idPeriodo,$idDepartamento)
+	{
+		$data = DB::select('SELECT  proyectos.name, recursos.monto, recursos.periodo_id, proyectos.id, recursos.proyecto_id  FROM proyectos INNER JOIN recursos ON proyectos.id = recursos.proyecto_id WHERE proyectos.id = '.$idProyecto.' AND recursos.periodo_id = '.$idPeriodo);
+		if (!$data) {
+			return response()->json(['No se encontraron proyectos',404],404);
+		}
+		return response()->json([$data],200);
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -52,9 +61,15 @@ class ProyectoController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
 		//
+		if (!$request->get('name')) {
+			return response()->json(['faltan datos',422],422);
+		}
+		
+		Proyecto::create($request->all());
+		return response()->json(['se ha creado el proyecto'],200);
 	}
 
 	/**

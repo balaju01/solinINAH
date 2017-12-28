@@ -1,0 +1,30 @@
+<div ng-controller = "PeriodoController">
+	
+	<table>
+		<thead>
+			<tr>
+				<th class="text-center">Id</th>
+				<th class="text-center">Periodo</th>
+				<th class="text-center">Inicio</th>
+				<th class="text-center">Fin</th>
+				<th class="text-center">Presupuesto del periodo</th>
+				<th class="text-center">Acciones</th>
+			</tr>
+		</thead>
+		<tbody ng-repeat = "(key, item) in data" ng-click="item.selected=!item.selected">
+			<td class="text-center">&nbsp;{{item.id}}&nbsp;</td>
+			<td class="text-center">&nbsp;{{item.name}}&nbsp;</td>
+			<td class="text-center">&nbsp;{{item.inicio}}&nbsp;</td>
+			<td class="text-center">&nbsp;{{item.fin}}&nbsp;</td>
+			<td class="text-center">&nbsp;{{item.presupuesto}}&nbsp;</td>
+			<td class="text-center">
+				&nbsp;<button ng-click="verPeriodo(item)" type="button" class="btn btn-success" data-title="Editar">Ver Periodo</button>&nbsp;
+				
+			</td>
+		</tbody>
+	</table>
+	<br>
+	<footer>
+		<button ng-click="cancelar()" type="button" class="btn btn-success" data-title="cancelarr">Regresar</button>
+	</footer>
+</div>

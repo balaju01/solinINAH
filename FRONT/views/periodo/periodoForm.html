@@ -1,0 +1,56 @@
+<div ng-controller = "PeriodoController">
+	<form>
+		<div class="form-group">
+			<label>Periodo</label>
+			<input type="text" name="nombre" ng-model="item.name">
+		</div>
+		
+		<div class="form-group">
+			<label>Inicio de Periodo</label>
+			<select ng-model="item.inicio">
+				<option>Enero</option>
+				<option>Febrero</option>
+				<option>Marzo</option>
+				<option>Abril</option>
+				<option>Mayo</option>
+				<option>Junio</option>
+				<option>Julio</option>
+				<option>Agosto</option>
+				<option>Septiembre</option>
+				<option>Octubre</option>
+				<option>Noviembre</option>
+				<option>Diciembre</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label>Fin de Periodo</label>
+			<select ng-model="item.fin">
+				<option>Enero</option>
+				<option>Febrero</option>
+				<option>Marzo</option>
+				<option>Abril</option>
+				<option>Mayo</option>
+				<option>Junio</option>
+				<option>Julio</option>
+				<option>Agosto</option>
+				<option>Septiembre</option>
+				<option>Octubre</option>
+				<option>Noviembre</option>
+				<option>Diciembre</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label>Presupuesto</label>
+			<input type="number" name="email" ng-model="item.presupuesto">
+		</div>
+		
+		
+	</form>
+	<div ng-switch="formOption">
+		<button ng-click="crear()" type="button" class="btn btn-success" data-title="guardar">Guardar</button>
+		
+		<button ng-click="cancelar()" type="button" class="btn btn-success" data-title="cancelarr">Cancelar</button>
+	</div>
+</div>

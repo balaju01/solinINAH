@@ -1,26 +1,29 @@
-<div ng-controller = "DeptoController">
+<div ng-controller = "ProyectoController">
 	
 	<table>
 		<thead>
 			<tr>
 				<th class="text-center">Id</th>
-				<th class="text-center">Departamento</th>
-				<th class="text-center">Seudonimo</th>
+				<th class="text-center">Nombre del Proyecto</th>
+				<th class="text-center">Clave</th>
+				<th class="text-center">Saldo</th>
 				<th class="text-center">Acciones</th>
 			</tr>
 		</thead>
 		<tbody ng-repeat = "(key, item) in data" ng-click="item.selected=!item.selected">
 			<td class="text-center">&nbsp;{{item.id}}&nbsp;</td>
 			<td class="text-center">&nbsp;{{item.name}}&nbsp;</td>
-			<td class="text-center">&nbsp;{{item.seudonimo}}&nbsp;</td>
+			<td class="text-center">&nbsp;{{item.clave}}&nbsp;</td>
+			<td class="text-center">&nbsp;{{item.Saldo}}&nbsp;</td>
 			<td class="text-center">
-				&nbsp;<button ng-click="verProyectos(item)" type="button" class="btn btn-success" data-title="Editar">Ver Proyectos</button>&nbsp;
+				&nbsp;<button ng-click="verProyecto(item)" type="button" class="btn btn-success" data-title="Editar">Ver Proyectos</button>&nbsp;
 				&nbsp;<button ng-click="delete(item)" type="button" class="btn btn-danger" data-title="Eliminar">Eliminar</button>&nbsp;
 			</td>
 		</tbody>
 	</table>
 	<br>
 	<footer>
+		<button ng-click="abrirForm()" type="button" class="btn btn-success" data-title="guardar">Nuevo proyecto</button>
 		<button ng-click="cancelar()" type="button" class="btn btn-success" data-title="cancelarr">Regresar</button>
 	</footer>
 </div>

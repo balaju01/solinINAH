@@ -8,11 +8,20 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
 	$scope.solinNuevo = function(){
 
 	};
+
 	$scope.nuevoDepto = function(){
 		$location.path('/deptoForm');
 	};
 	$scope.verDepto = function(){
 		$location.path('/depto');
+	};
+
+	$scope.proyectoNuevo = function(){
+		$location.path('/proyectoForm');
+	};
+
+	$scope.verPeriodo = function(){
+		$location.path('/periodo');
 	};
 }]);
 	

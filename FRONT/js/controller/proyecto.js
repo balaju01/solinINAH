@@ -1,9 +1,9 @@
 'use strict';
  
-angular.module('solin').controller('DeptoController',['$scope','$log','$http','$base64','$rootScope','$location',function($scope,$log,$http,$base64,$rootScope,$location) {
+angular.module('solin').controller('ProyectoController',['$scope','$log','$http','$base64','$rootScope','$location',function($scope,$log,$http,$base64,$rootScope,$location) {
 	var req = {
 		method:"GET",
-    	url: $rootScope.ruta+"departamentos",	
+    	url: $rootScope.ruta+"proyectos/periodo/"+$rootScope.date+"/departamento/"+$rootScope.depto.id,	
   	};
   	//peticion para recuperar todos los departamentos
 	var init = function(){
@@ -17,37 +17,36 @@ angular.module('solin').controller('DeptoController',['$scope','$log','$http','$
 	    response.error(function(data, status, headers, config) {
 	      alert("Ha fallado la petición. Estado HTTP:"+status);
 	  	});
-	}
+	};
 	init();
+
+	$scope.abrirForm = function(){
+		$location.path('/proyectoForm');
+	};
 
 	$scope.crear = function(){
 		req = {
 	        method: 'POST',
-	        url:$rootScope.ruta+"departamentos",
+	        url:$rootScope.ruta+"proyectos",
 	        
 	        data: {
 	          name: $scope.item.name,
-	          seudonimo: $scope.item.seudonimo
+	          saldo: $scope.item.saldo,
+	          clave: $scope.item.clave,
+	          usuario_id: $rootScope.depto.id
 	        }
 	    }
 	    $http(req)
         .success(function (response) {//'response' es el objeto que devuelve el servicio web
           console.log(response);
-          $location.path('/usuario');
+          //$location.path('/usuario');
           
         })
         .error(function (response){
           console.log(response);
           alert("Ha fallado la petición. Estado HTTP:"+status);
-          $location.path('/usuario');
+          $location.path('/departamento');
         });
 	};
-	$scope.cancelar = function(){
-		$location.path('/usuario');
-	};
 
-	$scope.verProyectos = function(item){
-		$rootScope.depto = item;
-		$location.path('/proyecto');
-	};
 }]);
