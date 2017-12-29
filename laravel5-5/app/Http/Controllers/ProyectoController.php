@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Proyecto;
+use App\Deptos_Proyectos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -46,6 +47,15 @@ class ProyectoController extends Controller {
 		return response()->json([$data],200);
 	}
 
+	public function ProyectoId($name)
+	{
+		$data=DB::select('SELECT proyectos.id from proyectos WHERE proyectos.name='.$request->get('name'));
+		if(!$data){
+			return response()->json(['No hay Proyectos',404],404);
+		}
+		return response()->json([$data],200);
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -67,9 +77,12 @@ class ProyectoController extends Controller {
 		if (!$request->get('name')) {
 			return response()->json(['faltan datos',422],422);
 		}
+		$aux=$request->get('departamento');
+		$aux2=Proyecto::create($request->all());
 		
-		Proyecto::create($request->all());
-		return response()->json(['se ha creado el proyecto'],200);
+		
+		DB::insert('INSERT INTO deptos__proyectos (departamento_id , proyecto_id) VALUES  ('.$aux.','.$aux2->id.")");
+		return response()->json([$aux2],200);
 	}
 
 	/**

@@ -2,7 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Recurso;
 use Illuminate\Http\Request;
 
 class RecursoController extends Controller {
@@ -35,6 +35,12 @@ class RecursoController extends Controller {
 	public function store()
 	{
 		//
+		if (!$request->get('monto')) {
+			return response()->json(['faltan datos',422],422);
+		}
+		
+		Proyecto::create($request->all());
+		return response()->json(['se ha creado el proyecto'],200);
 	}
 
 	/**
