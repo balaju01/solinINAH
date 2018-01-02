@@ -37,5 +37,6 @@ Route::get('/departamento/{departamento}/solins/estado/{estado}', 'SolinControll
 Route::get('/solins/estado/{estado}', 'SolinController@Estado');
 
 Route::resource('periodos','PeriodoController');
+Route::get('/periodo/{nombre}','PeriodoController@buscarporNombre');
 
 Route::resource('recurso','RecursoController');

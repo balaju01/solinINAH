@@ -4,8 +4,9 @@ angular.module('solin').controller('ProyectoController',['$scope','$log','$http'
 	
 	var req = {
 		method:"GET",
-    	url: $rootScope.ruta+"proyectos/periodo/"+$rootScope.date+"/departamento/"+$rootScope.depto.id,	
+    	url: $rootScope.ruta+"proyectos/periodo/"+$rootScope.date.id+"/departamento/"+$rootScope.depto.id,	
   	};
+  	console.log($rootScope.ruta+"proyectos/periodo/"+$rootScope.date.id+"/departamento/"+$rootScope.depto.id);
   	//peticion para recuperar todos los departamentos
 	var init = function(){
 		var response=$http(req);
