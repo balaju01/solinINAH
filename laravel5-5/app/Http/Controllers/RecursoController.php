@@ -32,14 +32,14 @@ class RecursoController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
 		//
 		if (!$request->get('monto')) {
 			return response()->json(['faltan datos',422],422);
 		}
 		
-		Proyecto::create($request->all());
+		Recurso::create($request->all());
 		return response()->json(['se ha creado el proyecto'],200);
 	}
 

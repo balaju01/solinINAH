@@ -40,7 +40,7 @@ class ProyectoController extends Controller {
 
 	public function ProyectosDepartamento($idPeriodo,$idDepartamento)
 	{
-		$data = DB::select('SELECT  proyectos.name, recursos.monto, recursos.periodo_id, proyectos.id, recursos.proyecto_id  FROM proyectos INNER JOIN recursos ON proyectos.id = recursos.proyecto_id WHERE proyectos.id = '.$idProyecto.' AND recursos.periodo_id = '.$idPeriodo);
+		$data = DB::select('SELECT proyectos.name AS nameProyecto, proyectos.id AS proyecto_id, deptos__proyectos.departamento_id, departamentos.name AS nameDepartamento, proyectos.usuario_id, users.name AS nameUsuario, proyectos.clave AS claveProyecto, proyectos.saldo AS saldoProyecto, recursos.monto AS montoAsignado, recursos.periodo_id, periodos.name AS namePeriodo FROM proyectos INNER JOIN recursos ON proyectos.id = recursos.proyecto_id INNER JOIN periodos ON recursos.periodo_id = periodos.id INNER JOIN users ON proyectos.usuario_id = users.id INNER JOIN deptos__proyectos ON proyectos.id = deptos__proyectos.proyecto_id INNER JOIN departamentos ON deptos__proyectos.departamento_id = departamentos.id WHERE departamentos.id = '.$idDepartamento.' AND periodos.id = '.$idPeriodo);
 		if (!$data) {
 			return response()->json(['No se encontraron proyectos',404],404);
 		}
