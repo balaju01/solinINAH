@@ -15,6 +15,7 @@ class RecursoController extends Controller {
 	public function index()
 	{
 		//
+		return response()->json(['Recurso editado exitosamente'],202);
 	}
 
 	/**
@@ -71,9 +72,32 @@ class RecursoController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
 		//
+		$metodo =$request->method();
+		$data=Recurso::find($id);
+		if ($metodo==="PATCH") {
+			$periodo_id=$request->get('periodo_id');
+			if ($periodo_id!=null && $periodo_id!='') {
+				$data->periodo_id=$periodo_id;
+			}
+			$usuario_id=$request->get('usuario_id');
+			if ($usuario_id!=null && $usuario_id!='') {
+				$data->usuario_id=$usuario_id;
+			}
+			$proyecto_id=$request->get('proyecto_id');
+			if ($proyecto_id!=null && $proyecto_id!='') {
+				$data->proyecto_id=$proyecto_id;
+			}
+			$monto=$request->get('monto');
+			if ($monto!=null && $monto!='') {
+				$data->monto=$monto;
+			}
+			$data->save();
+			return response()->json(['Recurso editado exitosamente'],202);
+		}
+		return response()->json(['Datos invalidos',404],404);
 	}
 
 	/**

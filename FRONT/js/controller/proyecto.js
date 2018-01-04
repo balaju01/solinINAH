@@ -111,15 +111,37 @@ angular.module('solin').controller('ProyectoController',['$scope','$log','$http'
 	        
 	        data: {
 	          name: $scope.item.name,
-	          departamento: $rootScope.depto.id,
 	          clave: $scope.item.clave,
 	          usuario_id: $rootScope.users.id,
-	          saldo: $scope.item.saldo,
-	          monto: $scope.item.montoAsignado
+	          saldo: $scope.item.saldo
 	          
 	        }
 	    }
 	    $http(req)
+        .success(function (response) {//'response' es el objeto que devuelve el servicio web
+          console.log(response);
+          //$location.path('/proyecto');
+          
+        })
+        .error(function (response){
+          console.log(response);
+          alert("Ha fallado la petición. Estado HTTP:"+status);
+          $location.path('/proyecto');
+        });
+
+        var req1 = {
+	        method: 'PATCH',
+	        url:$rootScope.ruta+"recurso/"+$scope.item.recurso_id,
+	        
+	        data: {
+	          periodo_id: $scope.item.periodo_id,
+	          usuario_id: $rootScope.users.id,
+	          proyecto_id: $scope.item.proyecto_id,
+	          monto: $scope.item.montoAsignado
+	          
+	        }
+	    }
+	    $http(req1)
         .success(function (response) {//'response' es el objeto que devuelve el servicio web
           console.log(response);
           $location.path('/proyecto');
@@ -128,7 +150,7 @@ angular.module('solin').controller('ProyectoController',['$scope','$log','$http'
         .error(function (response){
           console.log(response);
           alert("Ha fallado la petición. Estado HTTP:"+status);
-          $location.path('/admin');
+          $location.path('/proyecto');
         });
 	};
 

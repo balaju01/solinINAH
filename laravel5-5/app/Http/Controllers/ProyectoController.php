@@ -40,7 +40,7 @@ class ProyectoController extends Controller {
 
 	public function ProyectosDepartamento($idPeriodo,$idDepartamento)
 	{
-		$data = DB::select('SELECT proyectos.name AS nameProyecto, proyectos.id AS proyecto_id, deptos__proyectos.departamento_id, departamentos.name AS nameDepartamento, proyectos.usuario_id, users.name AS nameUsuario, proyectos.clave AS claveProyecto, proyectos.saldo AS saldoProyecto, recursos.monto AS montoAsignado, recursos.periodo_id, periodos.name AS namePeriodo FROM proyectos INNER JOIN recursos ON proyectos.id = recursos.proyecto_id INNER JOIN periodos ON recursos.periodo_id = periodos.id INNER JOIN users ON proyectos.usuario_id = users.id INNER JOIN deptos__proyectos ON proyectos.id = deptos__proyectos.proyecto_id INNER JOIN departamentos ON deptos__proyectos.departamento_id = departamentos.id WHERE departamentos.id = '.$idDepartamento.' AND periodos.id = '.$idPeriodo);
+		$data = DB::select('SELECT proyectos.name AS nameProyecto, proyectos.id, deptos__proyectos.departamento_id, departamentos.name AS nameDepartamento, proyectos.usuario_id, users.name AS nameUsuario, proyectos.clave AS claveProyecto, proyectos.saldo AS saldoProyecto, recursos.monto AS montoAsignado, recursos.periodo_id, recursos.id AS recurso_id, recursos.proyecto_id, recursos.usuario_id, periodos.name AS namePeriodo FROM proyectos INNER JOIN recursos ON proyectos.id = recursos.proyecto_id INNER JOIN periodos ON recursos.periodo_id = periodos.id INNER JOIN users ON proyectos.usuario_id = users.id INNER JOIN deptos__proyectos ON proyectos.id = deptos__proyectos.proyecto_id INNER JOIN departamentos ON deptos__proyectos.departamento_id = departamentos.id WHERE departamentos.id = '.$idDepartamento.' AND periodos.id = '.$idPeriodo);
 		if (!$data) {
 			return response()->json(['No se encontraron proyectos',404],404);
 		}
@@ -113,9 +113,32 @@ class ProyectoController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
 		//
+		$metodo =$request->method();
+		$data=Proyecto::find($id);
+		if ($metodo==="PATCH") {
+			$name=$request->get('name');
+			if ($name!=null && $name!='') {
+				$data->name=$name;
+			}
+			$clave=$request->get('clave');
+			if ($clave!=null && $clave!='') {
+				$data->clave=$clave;
+			}
+			$usuario_id=$request->get('usuario_id');
+			if ($usuario_id!=null && $usuario_id!='') {
+				$data->usuario_id=$usuario_id;
+			}
+			$saldo=$request->get('saldo');
+			if ($saldo!=null && $saldo!='') {
+				$data->saldo=$saldo;
+			}
+			$data->save();
+			return response()->json(['Proyecto editado exitosamente'],202);
+		}
+		return response()->json(['Datos invalidos',404],404);
 	}
 
 	/**
