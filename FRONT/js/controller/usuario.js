@@ -6,7 +6,7 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
 	console.log($scope.rol);
 
 	$scope.solinNuevo = function(){
-
+		$location.path('/solinForm');
 	};
 
 	$scope.nuevoDepto = function(){

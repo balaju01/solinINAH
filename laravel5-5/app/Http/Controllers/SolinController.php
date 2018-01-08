@@ -9,10 +9,7 @@ use Illuminate\Http\Request;
 
 class SolinController extends Controller {
 
-	public function __construct()
-	{
-		$this->middleware('auth.basic');
-	}
+	
 
 	/**
 	 * Display a listing of the resource.
@@ -20,6 +17,16 @@ class SolinController extends Controller {
 	 * @return Response
 	 */
 	public function showAll()
+	{
+		//se muestran todos los solines
+		$data = Solin::all();
+		if (!$data) {
+			return response()->json(['No hay solines',404],404);
+		}
+		return response()->json([$data],200);
+	}
+
+	public function allDepartamento($idDepartamento)
 	{
 		//se muestran todos los solines
 		$data = Solin::all();
@@ -55,14 +62,6 @@ class SolinController extends Controller {
 
 	}
 
-	public function Estado($estado)
-	{
-		$data = DB::select('SELECT * FROM solins WHERE status = '.$estado);
-		if (!$data) {
-			return response()->json(['No se encontraron Solines con ese estado',404],404);
-		}
-		return response()->json([$data],200);
-	}
 
 	/**
 	 * Show the form for creating a new resource.
