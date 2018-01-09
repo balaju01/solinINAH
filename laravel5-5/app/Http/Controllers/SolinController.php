@@ -62,6 +62,15 @@ class SolinController extends Controller {
 
 	}
 
+	public function ContSolinPeriodo($periodo)
+	{
+		$data = DB::select('SELECT COUNT (id) FROM solins WHERE periodo_id = '+$periodo);
+		if (!$data) {
+			return response()->json(['No se encontraron solines',404],404);
+		}
+		return response()->json([$data],200);
+	}
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -86,7 +95,7 @@ class SolinController extends Controller {
 		}
 		
 		Solin::create($request->all());
-		return response()->json(['se ha creado al usuario'],200);
+		return response()->json(['se ha creado el solin'],200);
 	}
 
 	/**

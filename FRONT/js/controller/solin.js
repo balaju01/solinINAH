@@ -1,6 +1,6 @@
 'use strict';
  
-angular.module('solin').controller('SolinController',['$scope','$log','$http','$base64','$rootScope',function($scope,$log,$http,$base64,$rootScope) {
+angular.module('solin').controller('SolinController',['$scope','$log','$http','$base64','$rootScope','$location',function($scope,$log,$http,$base64,$rootScope,$location) {
 	$scope.item = {
       id: "",
       folio: "",
@@ -19,36 +19,60 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
       cargo: "",
       comprobante: ""
     };
+  $scope.item.user = $rootScope.users.name;
 
   var req = {
     method:"GET",
+      url: $rootScope.ruta+"proyectos/periodo/"+$rootScope.date.id+"/departamento/"+$rootScope.users.departamento_id,  
+    };
+    var req1 = {
+    method:"GET",
     url: $rootScope.ruta+"solins/departamento/"+$rootScope.users.departamento_id
   }
+    //peticion para recuperar todos los proyectos por departamentos y solines por departamento
+  var init = function(){
+    var response=$http(req);
 
-  var response=$http(req);
+    response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
+        $scope.data = data[0];
+        console.log($scope.data);
+        
+      });
+      response.error(function(data, status, headers, config) {
+        alert("Ha fallado la petición. Estado HTTP:"+status);
+      });
 
-	response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
-      $scope.data = data[0];
-      console.log($scope.data);
-      //console.log($base64.encode('admin:admin'));
-    });
-    response.error(function(data, status, headers, config) {
-      alert("Ha fallado la petición. Estado HTTP:"+status);
-  	});
+    var response1=$http(req1);
+
+    response1.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
+        $scope.data1 = data[0];
+        console.log($scope.data1);
+        //console.log($base64.encode('admin:admin'));
+      });
+      response1.error(function(data, status, headers, config) {
+        alert("Ha fallado la petición. Estado HTTP:"+status);
+      });
+  };
+  init();
+
 
 
   $scope.crear = function(){
+    console.log($rootScope.ruta+"solins");
+    //aqui hay que agregar una llamada al end point ContSolinPeriodo para que traiga el numero de columnas y agregarlo al folio
+    var fol = $scope.data.seudonimo + $scope.item.nameProyecto+'-'+$filter('date')(new Date(),'yyyy')+sec;
     req = {
           method: 'POST',
-          url: $rootScope.ruta+"solins/",
+          url: $rootScope.ruta+"solins",
           data: {
-            folio: "DepInf-2017-3",
+            folio: fol,
             proyecto_id: $scope.item.proyecto_id,
-            usuario_cr_id: 2,
+            usuario_cr_id: $rootScope.users.id,
             usuario_c_id: 1,
             usuario_a_id: 1,
-            periodo_id: 2,
+            periodo_id: $rootScope.date.id,
             monto: $scope.item.monto,
+            montoL: $scope.item.montoL,
             descripcion: $scope.item.descripcion,
             pago: $scope.item.pago,
             n_pago: $scope.item.n_pago,
@@ -58,7 +82,7 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
       $http(req)
         .success(function (response) {//'response' es el objeto que devuelve el servicio web
           console.log(response);
-          
+          $location.path('/usuario')
         })
         .error(function (response){
           console.log(response);
@@ -69,129 +93,172 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
   };
 
 
-  $scope.NumerosaLetras = function(cantidad) {
-    console.log(cantidad)
-    if (cantidad == "0.00" || cantidad == "0") {
-      return "CERO PESOS 00/100 M. N.";
-    } 
-    else {
-      var ent = cantidad;
-      console.log(ent);
-      var arreglo = str_split(ent[0]);
-      var longitud = count(arreglo);
-      var numero = "";
-      switch (longitud) {
+  function Unidades(num){
+
+    switch(num)
+    {
+        case 1: return "UN";
+        case 2: return "DOS";
+        case 3: return "TRES";
+        case 4: return "CUATRO";
+        case 5: return "CINCO";
+        case 6: return "SEIS";
+        case 7: return "SIETE";
+        case 8: return "OCHO";
+        case 9: return "NUEVE";
+    }
+
+    return "";
+}//Unidades()
+
+function Decenas(num){
+
+    var decena = Math.floor(num/10);
+    var unidad = (num) - (decena * 10);
+
+    switch(decena)
+    {
         case 1:
-          numero = unidades(arreglo[0]);
-          break;
+            switch(unidad)
+            {
+                case 0: return "DIEZ";
+                case 1: return "ONCE";
+                case 2: return "DOCE";
+                case 3: return "TRECE";
+                case 4: return "CATORCE";
+                case 5: return "QUINCE";
+                default: return "DIECI" + Unidades(unidad);
+            }
         case 2:
-          numero = decenas(arreglo[0], arreglo[1]);
-          break;
-        case 3:
-          numero = centenas(arreglo[0], arreglo[1], arreglo[2]);
-          break;
-        case 4:
-          numero = unidadesdemillar(arreglo[0], arreglo[1], arreglo[2], arreglo[3]);
-          break;
-        case 5:
-          numero = decenasdemillar(arreglo[0], arreglo[1], arreglo[2], arreglo[3], arreglo[4]);
-          break;
-      }
-    return numero + "  PESOS " + ent[1] + "/100 M. N.";
+            switch(unidad)
+            {
+                case 0: return "VEINTE";
+                default: return "VEINTI" + Unidades(unidad);
+            }
+        case 3: return DecenasY("TREINTA", unidad);
+        case 4: return DecenasY("CUARENTA", unidad);
+        case 5: return DecenasY("CINCUENTA", unidad);
+        case 6: return DecenasY("SESENTA", unidad);
+        case 7: return DecenasY("SETENTA", unidad);
+        case 8: return DecenasY("OCHENTA", unidad);
+        case 9: return DecenasY("NOVENTA", unidad);
+        case 0: return Unidades(unidad);
     }
-  }
+}//Unidades()
 
-  var unidades = function(unidad) {
-    var unidade = {1 : 'UN ',
-      2 : 'DOS ',
-      3 : 'TRES ',
-      4 : 'CUATRO ',
-      5 : 'CINCO ',
-      6 : 'SEIS ',
-      7 : 'SIETE ',
-      8 : 'OCHO ',
-      9 : 'NUEVE '};
-    return unidades[unidad];
-  }
+function DecenasY(strSin, numUnidades) {
+    if (numUnidades > 0)
+    return strSin + " Y " + Unidades(numUnidades)
 
-  var decenas = function(decena, unidad) {
-    var diez = {1 : 'ONCE',
-      2 : 'DOCE',
-      3 : 'TRECE',
-      4 : 'CATORCE',
-      5 : 'QUINCE',
-      6 : 'DIECISEIS',
-      7 : 'DIECISIETE',
-      8 : 'DIECIOCHO',
-      9 : 'DIECINUEVE'
+    return strSin;
+}//DecenasY()
+
+function Centenas(num) {
+    var centenas = Math.floor(num / 100);
+    var decenas = (num) - (centenas * 100);
+
+    switch(centenas)
+    {
+        case 1:
+            if (decenas > 0)
+                return "CIENTO " + Decenas(decenas);
+            return "CIEN";
+        case 2: return "DOSCIENTOS " + Decenas(decenas);
+        case 3: return "TRESCIENTOS " + Decenas(decenas);
+        case 4: return "CUATROCIENTOS " + Decenas(decenas);
+        case 5: return "QUINIENTOS " + Decenas(decenas);
+        case 6: return "SEISCIENTOS " + Decenas(decenas);
+        case 7: return "SETECIENTOS " + Decenas(decenas);
+        case 8: return "OCHOCIENTOS " + Decenas(decenas);
+        case 9: return "NOVECIENTOS " + Decenas(decenas);
+    }
+
+    return Decenas(decenas);
+}//Centenas()
+
+function Seccion(num, divisor, strSingular, strPlural) {
+    var cientos = Math.floor(num / divisor)
+    var resto = (num) - (cientos * divisor)
+
+    var letras = "";
+
+    if (cientos > 0)
+        if (cientos > 1)
+            letras = Centenas(cientos) + " " + strPlural;
+        else
+            letras = strSingular;
+
+    if (resto > 0)
+        letras += "";
+
+    return letras;
+}//Seccion()
+
+function Miles(num) {
+    var divisor = 1000;
+    var cientos = Math.floor(num / divisor)
+    var resto = (num) - (cientos * divisor)
+
+    var strMiles = Seccion(num, divisor, "UN MIL", "MIL");
+    var strCentenas = Centenas(resto);
+
+    if(strMiles == "")
+        return strCentenas;
+
+    return strMiles + " " + strCentenas;
+}//Miles()
+
+function Millones(num) {
+    var divisor = 1000000;
+    var cientos = Math.floor(num / divisor)
+    var resto = (num) - (cientos * divisor)
+
+    var strMillones = Seccion(num, divisor, "UN MILLON DE", "MILLONES DE");
+    var strMiles = Miles(resto);
+
+    if(strMillones == "")
+        return strMiles;
+
+    return strMillones + " " + strMiles;
+}//Millones()
+
+ $scope.NumeroALetras = function(num) {
+    var data = {
+        numero: num,
+        enteros: Math.floor(num),
+        centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+        letrasCentavos: "",
+        letrasMonedaPlural: 'PESOS 00/100 M. N.',//"PESOS", 'Dólares', 'Bolívares', 'etcs'
+        letrasMonedaSingular: 'PESOS 00/100 M. N.', //"PESO", 'Dólar', 'Bolivar', 'etc'
+
+        letrasMonedaCentavoPlural: "CENTAVOS",
+        letrasMonedaCentavoSingular: "CENTAVO"
     };
-    var decenas = {1 : 'DIEZ',
-      2 : 'VEINTE',
-      3 : 'TREINTA ',
-      4 : 'CUARENTA ',
-      5 : 'CINCUENTA ',
-      6 : 'SESENTA ',
-      7 : 'SETENTA ',
-      8 : 'OCHENTA ',
-      9 : 'NOVENTA '};
-    if (decena == 1) {
-      if (unidad == 0) {
-        return decenas[decena];
-      } 
-      else {
-        return diez[unidad];
-      }
-    } 
-    else if (decena == 2) {
-      if (unidad == 0) {
-        return decenas[decena];
-      } 
-      else {
-        return veinte = "VEINTI" + unidades(unidad);
-      }
-    } 
-    else {
-      return decenas[decena] + " Y " + unidades(unidad);
-    }
-  }
 
-  var centenas = function(centena, decena, unidad) {
-    var centenas = {1 : "CIENTO ",
-      2 : "DOSCIENTOS ",
-      3 : "TRESCIENTOS ",
-      4 : "CUATROCIENTOS ",
-      5 : "QUINIENTOS ",
-      6 : "SEISCIENTOS ",
-      7 : "SETECIENTOS ",
-      8 : "OCHOCIENTOS ",
-      9 : "NOVECIENTOS "};
+    if (data.centavos > 0) {
+        data.letrasCentavos = "CON " + (function (){
+            if (data.centavos == 1)
+                return Millones(data.centavos) + " " + data.letrasMonedaCentavoSingular;
+            else
+                return Millones(data.centavos) + " " + data.letrasMonedaCentavoPlural;
+            })();
+    };
 
-    if (centena == 1 && decena == 0 && unidad == 0) {
-      return "CIEN ";
+    if(data.enteros == 0){
+      console.log("CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos);
+      $scope.item.montoL = "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+        return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
     }
-    if (decena == 0) {
-      numero = centenas[centena] + "" + decenas(decena, unidad);
-      return str_replace(" Y ", " ", numero);
-    } 
-    else {
-      return centenas[centena] + "" + decenas(decena, unidad);
+    if (data.enteros == 1){
+      console.log(Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos);
+      $scope.item.montoL = Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
+        return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
     }
-  }
-
-  var unidadesdemillar = function(unimill, centena, decena, unidad) {
-    numero = unidades(unimill) + " MIL " + centenas(centena, decena, unidad);
-    numero = str_replace("UN  MIL ", "MIL ", numero);
-    if (unidad == 0) {
-      return str_replace(" Y ", " ", numero);
-    } 
-    else {
-      return numero;
+    else{
+      console.log(Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos);
+      $scope.item.montoL = Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+        return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
     }
-  }
-
-  var decenasdemillar = function(decemill, unimill, centena, decena, unidad) {
-    numero = decenas(decemill, unimill) + " MIL " + centenas(centena, decena, unidad);
-    return numero;
-  }
+}//NumeroALetras()
 
 }]);

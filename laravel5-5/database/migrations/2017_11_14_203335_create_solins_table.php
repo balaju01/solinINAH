@@ -22,6 +22,7 @@ class CreateSolinsTable extends Migration {
 			$table->integer('usuario_a_id')->unsigned()->nullable();
 			$table->integer('periodo_id')->unsigned();
 			$table->float('monto');
+			$table->string('montoL');
 			$table->text('descripcion');
 			$table->string('pago');
 			$table->string('n_pago');
