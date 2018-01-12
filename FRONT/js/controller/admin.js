@@ -18,7 +18,7 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
   	$scope.item = {
   		id: "",
   		names: "",
-  		departamento_id: 0,
+  		id_departamento: 0,
   		departamento: "",
   		email: "",
   		password: "",
@@ -82,10 +82,10 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 		console.log($scope.item);
 
 
-		if ($scope.item.departamento_id == 1 ) {
+		if ($scope.item.id_departamento == 1 ) {
 			$scope.item.rol = 1;
 		}
-		else if ($scope.item.departamento_id == 2 || $scope.item.departamento_id == 3) {
+		else if ($scope.item.id_departamento == 2 || $scope.item.id_departamento == 3) {
 			$scope.item.rol = 3;
 		}
 		else{
@@ -98,7 +98,7 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 	        
 	        data: {
 	          name: $scope.item.name,
-	          departamento_id: $scope.item.departamento_id,
+	          departamento_id: $scope.item.id_departamento,
 	          email: $scope.item.email,
 	          password: $scope.item.password,
 	          rol: $scope.item.rol
@@ -128,7 +128,7 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 	        
 	        data: {
 	          name: $scope.item.name,
-	          departamento_id: $scope.item.departamento_id,
+	          departamento_id: $scope.item.id_departamento,
 	          email: $scope.item.email,
 	          password: $scope.item.password
 	          

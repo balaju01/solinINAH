@@ -33,7 +33,7 @@ Route::get('/proyectos/periodo/{periodo}/departamento/{departamento}','ProyectoC
 Route::get('/proyectos/nombre/{nombre}','ProyectoController@ProyectoId');
 
 Route::resource('solins','SolinController');
-Route::get('/solins/departamento/{departamento}/estado/{estado}', 'SolinController@DepartamentoEstado');
+Route::get('/solins/departamento/{departamento}/periodo/{periodo}/estado/{estado}', 'SolinController@DepartamentoEstado');
 Route::get('/solins/departamento/{departamento}', 'SolinController@allDepartamento');
 Route::get('/solins/contar/periodo/{periodo}', 'SolinController@ContSolinPeriodo');
 

@@ -15,7 +15,7 @@
 
 	</div>
 	<div class="row">
-		<div class="col-sm-6">
+		<div class="col-sm-12">
 			<h3>Solines sin aprobar</h3>
 			<table>
 				<thead>
@@ -32,19 +32,21 @@
 				<tbody ng-repeat = "(key, item) in data">
 					<td class="text-center">{{item.folio}}</td>
 					<td class="text-center">{{item.descripcion}}</td>
-					<td class="text-center">{{item.proyecto}}</td>
+					<td class="text-center">{{item.proyectoNombre}}</td>
 					<td class="text-center">{{item.pago}}</td>
-					<td class="text-center">{{item.creado}}</td>
+					<td class="text-center">{{item.creador}}</td>
 					<td class="text-center">{{item.monto}}</td>
 					<td class="text-center">
-						<button ng-click="" type="button" class="btn btn-danger" data-title="Ver">Ver</button>
-						<button ng-click="" type="button" class="btn btn-danger" data-title="Eliminar">Eliminar</button>
+						<button ng-click="" type="button" class="btn btn-success" data-title="Ver">Ver</button>
+						<button ng-click="" type="button" class="btn btn-warnin" data-title="Eliminar">Eliminar</button>
 						<button ng-click="" type="button" class="btn btn-danger" data-title="Aprobar">Aprobar</button>
 					</td>
 				</tbody>
 			</table>
 		</div>
-		<div class="col-sm-6">
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
 			<h3>Solines aprobados</h3>
 			<table>
 				<thead>
@@ -62,10 +64,10 @@
 				<tbody ng-repeat = "(key, item) in data1">
 					<td class="text-center">{{item.folio}}</td>
 					<td class="text-center">{{item.descripcion}}</td>
-					<td class="text-center">{{item.proyecto}}</td>
+					<td class="text-center">{{item.proyectoNombre}}</td>
 					<td class="text-center">{{item.pago}}</td>
-					<td class="text-center">{{item.creado}}</td>
-					<td class="text-center">{{item.aprobado}}</td>
+					<td class="text-center">{{item.creador}}</td>
+					<td class="text-center">{{item.autorizador}}</td>
 					<td class="text-center">{{item.monto}}</td>
 					<td class="text-center">
 						<button ng-click="" type="button" class="btn btn-danger" data-title="Ver">Ver</button>
@@ -76,14 +78,14 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-6">
+		<div class="col-sm-12">
 			<h3>Solines Comprobados</h3>
 			<table>
 				<thead>
 					<tr>
 						<th class="text-center">Folio</th>
 						<th class="text-center">Descripcion</th>
-						<th class="text-center">Proyecto</th>
+						<th class="text-center">ProyectoNombre</th>
 						<th class="text-center">Pago</th>
 						<th class="text-center">Creado por</th>
 						<th class="text-center">Aprobado por</th>
@@ -97,9 +99,9 @@
 					<td class="text-center">{{item.descripcion}}</td>
 					<td class="text-center">{{item.proyecto}}</td>
 					<td class="text-center">{{item.pago}}</td>
-					<td class="text-center">{{item.creado}}</td>
-					<td class="text-center">{{item.aprobado}}</td>
-					<td class="text-center">{{item.comprobado}}</td>
+					<td class="text-center">{{item.creador}}</td>
+					<td class="text-center">{{item.autorizador}}</td>
+					<td class="text-center">{{item.confirmador}}</td>
 					<td class="text-center">{{item.monto}}</td>
 					<td class="text-center">
 						<button ng-click="" type="button" class="btn btn-danger" data-title="Ver">Ver</button>

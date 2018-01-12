@@ -1,6 +1,6 @@
 'use strict';
  
-angular.module('solin').controller('SolinController',['$scope','$log','$http','$base64','$rootScope','$location',function($scope,$log,$http,$base64,$rootScope,$location) {
+angular.module('solin').controller('SolinController',['$scope','$log','$http','$base64','$rootScope','$location','$filter',function($scope,$log,$http,$base64,$rootScope,$location,$filter) {
 	$scope.item = {
       id: "",
       folio: "",
@@ -60,7 +60,7 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
   $scope.crear = function(){
     console.log($rootScope.ruta+"solins");
     //aqui hay que agregar una llamada al end point ContSolinPeriodo para que traiga el numero de columnas y agregarlo al folio
-    var fol = $scope.data.seudonimo + $scope.item.nameProyecto+'-'+$filter('date')(new Date(),'yyyy')+sec;
+    var fol = $scope.data.seudonimo + $scope.item.nameProyecto+'-'+$filter('date')(new Date(),'yyyy')+'-'+$rootScope.solines;
     req = {
           method: 'POST',
           url: $rootScope.ruta+"solins",
