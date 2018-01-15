@@ -19,7 +19,11 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
       cargo: "",
       comprobante: ""
     };
+
+  $scope.item = $rootScope.solin;
   $scope.item.user = $rootScope.users.name;
+  $scope.item.cargoCr = $rootScope.users.cargo;
+
 
   var req = {
     method:"GET",
@@ -76,7 +80,8 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
             descripcion: $scope.item.descripcion,
             pago: $scope.item.pago,
             n_pago: $scope.item.n_pago,
-            status: 0            
+            status: 0,
+            comprobantes: $scope.item.comprobantes
           }
       }
       $http(req)
@@ -90,6 +95,39 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
         });
     console.log($scope.item);
 
+  };
+
+  $scope.update = function(){
+    console.log($scope.item);
+    req = {
+          method: 'PATCH',
+          url:$rootScope.ruta+"solins/"+$scope.item.id,
+          
+          data: {
+            proyecto_id: $scope.item.proyecto_id,
+            usuario_cr_id: $rootScope.users.id,
+            usuario_c_id: 1,
+            usuario_a_id: 1,
+            monto: $scope.item.monto,
+            montoL: $scope.item.montoL,
+            descripcion: $scope.item.descripcion,
+            pago: $scope.item.pago,
+            n_pago: $scope.item.n_pago,
+            status: 0,
+            comprobantes: $scope.item.comprobantes
+          }
+      }
+      $http(req)
+        .success(function (response) {//'response' es el objeto que devuelve el servicio web
+          console.log(response);
+          $location.path('/usuario');
+          
+        })
+        .error(function (response){
+          console.log(response);
+          alert("Ha fallado la petición. Estado HTTP:"+status);
+          $location.path('/usuario');
+        });
   };
 
 

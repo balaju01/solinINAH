@@ -37,9 +37,10 @@
 					<td class="text-center">{{item.creador}}</td>
 					<td class="text-center">{{item.monto}}</td>
 					<td class="text-center">
-						<button ng-click="" type="button" class="btn btn-success" data-title="Ver">Ver</button>
-						<button ng-click="" type="button" class="btn btn-warnin" data-title="Eliminar">Eliminar</button>
-						<button ng-click="" type="button" class="btn btn-danger" data-title="Aprobar">Aprobar</button>
+						<button ng-show="rol == 2" ng-click="editarSolin(item)" type="button" class="btn btn-info" data-title="Editar">Editar</button>
+						<button ng-show="rol == 2" ng-click="" type="button" class="btn btn-danger" data-title="Eliminar">Eliminar</button>
+						<button ng-show="rol != 2" ng-click="" type="button" class="btn btn-success" data-title="Aprobar">Aprobar</button>
+						<button ng-show="rol != 2" ng-click="" type="button" class="btn btn-warning" data-title="Rechazar">Rechazar</button>
 					</td>
 				</tbody>
 			</table>

@@ -101,7 +101,8 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 	          departamento_id: $scope.item.id_departamento,
 	          email: $scope.item.email,
 	          password: $scope.item.password,
-	          rol: $scope.item.rol
+	          rol: $scope.item.rol,
+	          cargo: $scope.item.cargo
 	        }
 	    }
 	    $http(req)
@@ -130,8 +131,8 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 	          name: $scope.item.name,
 	          departamento_id: $scope.item.id_departamento,
 	          email: $scope.item.email,
-	          password: $scope.item.password
-	          
+	          password: $scope.item.password,
+	          cargo: $scope.item.cargo
 	        }
 	    }
 	    $http(req)

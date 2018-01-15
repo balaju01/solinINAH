@@ -20,7 +20,8 @@ class UsuarioSeeder extends Seeder
         		'departamento_id' => 1,
         		'email' => 'admin',
         		'password' => Hash::make('admin'),
-        		'rol' => 1
+        		'rol' => 1,
+        		'cargo' => 'Administrador'
         	]
         ];
 

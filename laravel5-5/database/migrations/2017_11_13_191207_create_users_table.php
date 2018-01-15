@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration {
 			$table->string('email');
 			$table->string('password', 60);
 			$table->integer('rol');
+			$table->string('cargo');
 			$table->foreign('departamento_id')->references('id')->on('departamentos');
 			$table->timestamps();
 		});

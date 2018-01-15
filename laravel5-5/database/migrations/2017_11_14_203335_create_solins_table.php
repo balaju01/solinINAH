@@ -27,6 +27,7 @@ class CreateSolinsTable extends Migration {
 			$table->string('pago');
 			$table->string('n_pago');
 			$table->integer('status');
+			$table->string('comprobantes');
 			$table->foreign('proyecto_id')->references('id')->on('proyectos');
 			$table->foreign('usuario_cr_id')->references('id')->on('users');
 			$table->foreign('usuario_c_id')->references('id')->on('users');
