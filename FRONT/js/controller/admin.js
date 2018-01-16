@@ -160,7 +160,7 @@ angular.module('solin').controller('AdminController',['$scope','$log','$http','$
 	    $http(req)
         .success(function (response) {//'response' es el objeto que devuelve el servicio web
           console.log(response);
-          $location.path('/home');
+          $location.path('/');
         })
         .error(function (response){
           console.log(response);

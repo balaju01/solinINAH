@@ -3,8 +3,8 @@
 angular.module('solin').controller('LoginController',['$scope', '$rootScope', '$location', 'authUser', function ($scope, $rootScope, $location, authUser) {
     
     $scope.loginForm = {
-        email: 'Aln',//'tony',
-        password: '123123'//'123456'
+        email: 'tony',//,'Aln'
+        password: '123456'//'123123'
     };
 
     $scope.login = function(){

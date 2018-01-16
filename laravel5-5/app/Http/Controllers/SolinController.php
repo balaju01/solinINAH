@@ -178,6 +178,10 @@ class SolinController extends Controller {
 			if ($comprobantes!=null && $comprobantes!='') {
 				$data->comprobantes=$comprobantes;
 			}
+			$status=$request->get('status');
+			if ($status!=null && $status!='') {
+				$data->status=$status;
+			}
 			$data->save();
 			return response()->json(['Usuario editado exitosamente'],202);
 		}
@@ -190,9 +194,15 @@ class SolinController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($idUsuario,$idSolin)
+	public function destroy($id)
 	{
 		//eliminar solin de un usuario
+		$user=Solin::find($id);
+		if (!$user) {
+			return response()->json(['No se encontro el solin',404],404);
+		}
+		$user->delete();
+		return response()->json(['Solin eliminado exitosamente'],202);
 	}
 
 }

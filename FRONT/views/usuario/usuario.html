@@ -1,9 +1,9 @@
 
-<div class="container" ng-controller="UsuarioController">
+<div class="container" >
 	<div id="main">
 
   		<nav class="{{active}}" ng-click="$event.preventDefault()">
-		   <a ng-click="" class="home" ng-click="active='home'">Home</a>
+		   
 		   <a ng-show="rol == 2" ng-click="solinNuevo()" class="btn btn-succes" ng-click="active='solin'">Nuevo Solin</a>
 		   
 		   <a ng-show="rol != 2" ng-click="nuevoDepto()" class="btn btn-succes" ng-click="active='depto'">Crear Departamento</a>
@@ -38,9 +38,9 @@
 					<td class="text-center">{{item.monto}}</td>
 					<td class="text-center">
 						<button ng-show="rol == 2" ng-click="editarSolin(item)" type="button" class="btn btn-info" data-title="Editar">Editar</button>
-						<button ng-show="rol == 2" ng-click="" type="button" class="btn btn-danger" data-title="Eliminar">Eliminar</button>
-						<button ng-show="rol != 2" ng-click="" type="button" class="btn btn-success" data-title="Aprobar">Aprobar</button>
-						<button ng-show="rol != 2" ng-click="" type="button" class="btn btn-warning" data-title="Rechazar">Rechazar</button>
+						<button ng-show="rol == 2" ng-click="eliminar(item)" type="button" class="btn btn-danger" data-title="Eliminar">Eliminar</button>
+						<button ng-show="rol != 2" ng-click="cambiarEstado(item,1)" type="button" class="btn btn-success" data-title="Aprobar">Aprobar</button>
+						<button ng-show="rol != 2" ng-click="cambiarEstado(item,2)" type="button" class="btn btn-warning" data-title="Rechazar">Rechazar</button>
 					</td>
 				</tbody>
 			</table>
@@ -71,8 +71,8 @@
 					<td class="text-center">{{item.autorizador}}</td>
 					<td class="text-center">{{item.monto}}</td>
 					<td class="text-center">
-						<button ng-click="" type="button" class="btn btn-danger" data-title="Ver">Ver</button>
-						<button ng-click="" type="button" class="btn btn-danger" data-title="Comprobado">Comprobado</button>
+						<button ng-click="" type="button" class="btn btn-info" data-title="Ver">Ver</button>
+						<button ng-show="rol != 2" ng-click="cambiarEstado(item,3)" type="button" class="btn btn-success" data-title="Comprobado">Comprobado</button>
 					</td>
 				</tbody>
 			</table>
@@ -86,7 +86,7 @@
 					<tr>
 						<th class="text-center">Folio</th>
 						<th class="text-center">Descripcion</th>
-						<th class="text-center">ProyectoNombre</th>
+						<th class="text-center">Proyecto</th>
 						<th class="text-center">Pago</th>
 						<th class="text-center">Creado por</th>
 						<th class="text-center">Aprobado por</th>
@@ -98,14 +98,14 @@
 				<tbody ng-repeat = "(key, item) in data2">
 					<td class="text-center">{{item.folio}}</td>
 					<td class="text-center">{{item.descripcion}}</td>
-					<td class="text-center">{{item.proyecto}}</td>
+					<td class="text-center">{{item.proyectoNombre}}</td>
 					<td class="text-center">{{item.pago}}</td>
 					<td class="text-center">{{item.creador}}</td>
 					<td class="text-center">{{item.autorizador}}</td>
 					<td class="text-center">{{item.confirmador}}</td>
 					<td class="text-center">{{item.monto}}</td>
 					<td class="text-center">
-						<button ng-click="" type="button" class="btn btn-danger" data-title="Ver">Ver</button>
+						<button ng-click="" type="button" class="btn btn-info" data-title="Ver">Ver</button>
 					</td>
 				</tbody>
 			</table>

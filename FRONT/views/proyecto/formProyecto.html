@@ -17,7 +17,7 @@
 		
 		<div ng-show = "!formOption" class="form-group">
 			<label>Monto Asignado</label>
-			<input type="number" name="email" ng-model="item.montoAsignado">
+			<input type="number" name="email" ng-model="item.montoAsignado" min="0" max="1000000">
 		</div>
 		
 	</form>

@@ -17,7 +17,7 @@
 				<div class="row form-group">
 					<label class="col-sm-8 col-form-label">SOLICITO A USTED AUTORIZACION POR LA CANTIDAD DE:</label>
 					<div class="col-sm-4">
-						<input ng-model="item.monto" ng-change="NumeroALetras(item.monto)" class="form-control" type="number" name="cantidad" id="cantidad">
+						<input ng-model="item.monto" ng-change="NumeroALetras(item.monto)" class="form-control" type="number" name="cantidad" id="cantidad" min="0" max="100000">
 					</div>
 					
 				</div>
