@@ -42,3 +42,4 @@ Route::resource('periodos','PeriodoController');
 Route::get('/periodo/{nombre}','PeriodoController@buscarporNombre');
 
 Route::resource('recurso','RecursoController');
+Route::get('/recurso/periodo/{periodo}','RecursoController@recursoPeriodo');

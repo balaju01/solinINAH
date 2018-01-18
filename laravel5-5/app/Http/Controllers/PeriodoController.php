@@ -25,7 +25,7 @@ class PeriodoController extends Controller {
 
 	public function buscarporNombre($name)
 	{
-		$data = DB::select('SELECT id, name FROM periodos WHERE name = \''.$name.'\'');
+		$data = DB::select('SELECT * FROM periodos WHERE name = \''.$name.'\'');
 		if (!$data) {
 			return response()->json(['No hay periodos',404],404);
 		}

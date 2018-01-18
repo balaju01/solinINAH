@@ -8,6 +8,8 @@
 				<th class="text-center">Inicio</th>
 				<th class="text-center">Fin</th>
 				<th class="text-center">Presupuesto del periodo</th>
+				<th class="text-center">Presupuesto Asignado</th>
+				<th class="text-center">Presupuesto Restante</th>
 				<th class="text-center">Acciones</th>
 			</tr>
 		</thead>
@@ -17,6 +19,8 @@
 			<td class="text-center">&nbsp;{{item.inicio}}&nbsp;</td>
 			<td class="text-center">&nbsp;{{item.fin}}&nbsp;</td>
 			<td class="text-center">&nbsp;{{item.presupuesto}}&nbsp;</td>
+			<td class="text-center">&nbsp;{{monto[item.id]}}&nbsp;</td>
+			<td class="text-center">&nbsp;{{item.presupuesto - monto[item.id]}}&nbsp;</td>
 			<td class="text-center">
 				&nbsp;<button ng-click="verPeriodo(item)" type="button" class="btn btn-success" data-title="Editar">Ver Periodo</button>&nbsp;
 				

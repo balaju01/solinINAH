@@ -131,7 +131,7 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
 	        .error(function (response){
 	          console.log(response);
 	          alert("Ha fallado la petición. Estado HTTP:"+status);
-	          $location.path('/usuario');
+	          $location.path('/');
 	        });
 		}
 		else if (op == 2) 
@@ -154,7 +154,7 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
 	        .error(function (response){
 	          console.log(response);
 	          alert("Ha fallado la petición. Estado HTTP:"+status);
-	          $location.path('/usuario');
+	          $location.path('/');
 	        });
 		}
 		else if (op == 3) 
@@ -177,7 +177,7 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
 	        .error(function (response){
 	          console.log(response);
 	          alert("Ha fallado la petición. Estado HTTP:"+status);
-	          $location.path('/usuario');
+	          $location.path('/');
 	        });
 		}
 	};
@@ -197,6 +197,7 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
         })
         .error(function (response){
           console.log(response);
+          
           alert("Ha fallado la petición. Estado HTTP:"+status);
 
         });

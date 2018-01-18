@@ -89,10 +89,11 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
       $http(req)
         .success(function (response) {//'response' es el objeto que devuelve el servicio web
           console.log(response);
-          $location.path('/usuario')
+          $location.path('/');
         })
         .error(function (response){
           console.log(response);
+          $location.path('/');
           alert("Ha fallado la petición. Estado HTTP:"+status);
         });
     console.log($scope.item);
@@ -122,13 +123,13 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
       $http(req)
         .success(function (response) {//'response' es el objeto que devuelve el servicio web
           console.log(response);
-          $location.path('/usuario');
+          $location.path('/');
           
         })
         .error(function (response){
           console.log(response);
           alert("Ha fallado la petición. Estado HTTP:"+status);
-          $location.path('/usuario');
+          $location.path('/');
         });
   };
 

@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Recurso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RecursoController extends Controller {
 
@@ -26,6 +27,15 @@ class RecursoController extends Controller {
 	public function create()
 	{
 		//
+	}
+
+	public function recursoPeriodo($id)
+	{
+		$data = DB::select('SELECT recursos.monto, recursos.id, recursos.periodo_id FROM recursos WHERE recursos.periodo_id = '.$id);
+		if(!$data){
+			return response()->json(['No hay Recursos',404],404);
+		}
+		return response()->json([$data],200);
 	}
 
 	/**

@@ -1,6 +1,8 @@
 'use strict';
  
 angular.module('solin').controller('PeriodoController',['$scope','$log','$http','$base64','$rootScope','$location',function($scope,$log,$http,$base64,$rootScope,$location) {
+	$scope.monto = $rootScope.monto;
+	
 	var req = {
 		method:"GET",
     	url: $rootScope.ruta+"periodos",	
@@ -9,6 +11,7 @@ angular.module('solin').controller('PeriodoController',['$scope','$log','$http',
   	$scope.item = $rootScope.periodo;
 
 	var init = function(){
+		console.log($scope.monto);
 		var response=$http(req);
 
 		response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
@@ -19,6 +22,7 @@ angular.module('solin').controller('PeriodoController',['$scope','$log','$http',
 	    response.error(function(data, status, headers, config) {
 	      alert("Ha fallado la petición. Estado HTTP:"+status);
 	  	});
+
 	};
 	init();
 
@@ -53,6 +57,11 @@ angular.module('solin').controller('PeriodoController',['$scope','$log','$http',
           alert("Ha fallado la petición. Estado HTTP:"+status);
           $location.path('/periodoForm');
         });
+	};
+
+	$scope.cancelar = function()
+	{
+		$location.path('/');
 	};
 
 }]);

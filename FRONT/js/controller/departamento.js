@@ -33,17 +33,17 @@ angular.module('solin').controller('DeptoController',['$scope','$log','$http','$
 	    $http(req)
         .success(function (response) {//'response' es el objeto que devuelve el servicio web
           console.log(response);
-          $location.path('/usuario');
+          $location.path('/');
           
         })
         .error(function (response){
           console.log(response);
           alert("Ha fallado la petición. Estado HTTP:"+status);
-          $location.path('/usuario');
+          $location.path('/');
         });
 	};
 	$scope.cancelar = function(){
-		$location.path('/usuario');
+		$location.path('/');
 	};
 
 	$scope.verProyectos = function(item){
