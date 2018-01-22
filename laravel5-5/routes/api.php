@@ -28,7 +28,7 @@ Route::resource('departamentos','DepartamentoController');
 Route::get('/departamento/{Nombre}', 'DepartamentoController@showName');
 
 Route::resource('proyectos','ProyectoController');
-Route::get('/proyectos/{proyectos}/saldo/periodo/{periodo}', 'ProyectoController@SaldoAsignadoProyecto');
+//Route::get('/proyectos/departamento/{departamento}/saldo/periodo/{periodo}', 'ProyectoController@SaldoAsignadoProyecto');
 Route::get('/proyectos/periodo/{periodo}/departamento/{departamento}','ProyectoController@ProyectosDepartamento');
 Route::get('/proyectos/nombre/{nombre}','ProyectoController@ProyectoId');
 

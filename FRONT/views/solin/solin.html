@@ -15,9 +15,18 @@
 			<form class="">
 
 				<div class="row form-group">
+					<label class="col-sm-4 col-form-label">PROYECTO:</label>
+					<div class="col-sm-8">
+						<select ng-model="item.proyecto_id" ng-change="verificar()" class="form-control" name="gasto" id="gasto">
+							<option ng-repeat="(key, option) in data" value="{{option.id}}">{{option.nameProyecto}}</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row form-group">
 					<label class="col-sm-8 col-form-label">SOLICITO A USTED AUTORIZACION POR LA CANTIDAD DE:</label>
 					<div class="col-sm-4">
-						<input ng-model="item.monto" ng-change="NumeroALetras(item.monto)" class="form-control" type="number" name="cantidad" id="cantidad" min="0" max="100000">
+						<input ng-model="item.monto" ng-change="verificarMonto(item.monto)" class="form-control" type="number" name="cantidad" id="cantidad" min="0" max="100000">
 					</div>
 					
 				</div>
@@ -33,15 +42,6 @@
 					<label class="col-sm-4 col-form-label">DESCRIPCION DEL GASTO:</label> 
 					<div class="col-sm-12">
 						<textarea ng-model="item.descripcion" style="resize: none;" class="form-control input-lg"></textarea>
-					</div>
-				</div>
-
-				<div class="row form-group">
-					<label class="col-sm-4 col-form-label">TIPO DE GASTO:</label>
-					<div class="col-sm-8">
-						<select ng-model="item.proyecto_id" class="form-control" name="gasto" id="gasto">
-							<option ng-repeat="(key, option) in data" value="{{option.id}}">{{option.nameProyecto}}</option>
-						</select>
 					</div>
 				</div>
 

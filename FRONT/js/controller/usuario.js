@@ -203,6 +203,10 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
         });
 	};
 
+	$scope.recursosDepto = function(){
+		$location.path('/proyecto');
+	};
+
 	$scope.solinNuevo = function(){
 		$rootScope.solin = {opcion: 1};
 		$location.path('/solinForm');

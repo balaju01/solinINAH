@@ -22,14 +22,15 @@
 			<td class="text-center">&nbsp;{{item.montoAsignado}}&nbsp;</td>
 			<td class="text-center">&nbsp;{{item.nameDepartamento}}&nbsp;</td>
 			<td class="text-center">
-				&nbsp;<button ng-click="abrirForm(0,item)" type="button" class="btn btn-success" data-title="Editar">Ver Proyectos</button>&nbsp;
-				&nbsp;<button ng-click="delete(item)" type="button" class="btn btn-danger" data-title="Eliminar">Eliminar</button>&nbsp;
+				&nbsp;<button ng-show="rol != 2" ng-click="abrirForm(0,item)" type="button" class="btn btn-success" data-title="Editar">Ver Proyectos</button>&nbsp;
+				&nbsp;<button ng-show="rol != 2" ng-click="delete(item)" type="button" class="btn btn-danger" data-title="Eliminar">Eliminar</button>&nbsp;
 			</td>
 		</tbody>
 	</table>
 	<br>
 	<footer>
-		<button ng-click="abrirForm(1,item)" type="button" class="btn btn-success" data-title="guardar">Nuevo proyecto</button>
-		<button ng-click="cancelar()" type="button" class="btn btn-success" data-title="cancelarr">Regresar</button>
+		<button ng-show="rol != 2" ng-click="abrirForm(1,item)" type="button" class="btn btn-success" data-title="guardar">Nuevo proyecto</button>
+		<button ng-show="rol != 2" ng-click="cancelar()" type="button" class="btn btn-success" data-title="cancelarr">Regresar</button>
+		<button ng-show="rol == 2" ng-click="cancela()" type="button" class="btn btn-success" data-title="cancelarr">Regresar</button>
 	</footer>
 </div>

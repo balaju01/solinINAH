@@ -28,15 +28,15 @@ class ProyectoController extends Controller {
 		return response()->json([$data],200);
 	}
 
-	public function SaldoAsignadoProyecto($idProyecto,$idPeriodo)
+	/*public function SaldoAsignadoProyecto($idDepartamento,$idPeriodo)
 	{
 		//muestra el saldo de un proyecto dependiendo del periodo
-		$data = DB::select('SELECT  proyectos.name, recursos.monto, recursos.periodo_id, proyectos.id, recursos.proyecto_id  FROM proyectos INNER JOIN recursos ON proyectos.id = recursos.proyecto_id WHERE proyectos.id = '.$idProyecto.' AND recursos.periodo_id = '.$idPeriodo);
+		$data = DB::select('SELECT proyectos.id, proyectos.name, proyectos.usuario_id, proyectos.clave, proyectos.saldo, departamentos.name, departamentos.id, recursos.periodo_id FROM proyectos INNER JOIN deptos__proyectos ON deptos__proyectos.proyecto_id = proyectos.id INNER JOIN departamentos ON deptos__proyectos.departamento_id = departamentos.id INNER JOIN recursos ON recursos.proyecto_id = proyectos.id WHERE departamentos.id = '.$idDepartamento.' AND recursos.periodo_id = '.$idPeriodo);
 		if (!$data) {
 			return response()->json(['No se encontro saldo asignado del Solin',404],404);
 		}
 		return response()->json([$data],200);
-	}
+	}*/
 
 	public function ProyectosDepartamento($idPeriodo,$idDepartamento)
 	{

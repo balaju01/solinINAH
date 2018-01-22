@@ -61,6 +61,21 @@ angular.module('solin').controller('HomeController',['$scope', '$rootScope', '$f
                 });
             }
         }
+        if ($rootScope.users.rol == 2)
+        {
+            var req = {
+                method:"GET",
+                url: $rootScope.ruta+"proyectos/periodo/"+$rootScope.date.id+"/departamento/"+$rootScope.users.departamento_id
+            }
+            var response=$http(req);
+            response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
+                console.log(data[0]);
+                $rootScope.proyectos = data[0];
+            });
+            response.error(function(data, status, headers, config) {
+                alert("Ha fallado la petición. Estado HTTP:"+status);
+            });
+        }
     };
     
 }]);

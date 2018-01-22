@@ -133,6 +133,33 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
         });
   };
 
+  $scope.verificarMonto = function(num)
+  {
+    if(num < $scope.saldoActual)
+    {
+      $scope.saldoVigente = num;
+      NumeroALetras(num);
+    }
+    else
+    {
+      console.log("El monto solicitado supera el saldo del Proyecto");
+    }
+  };
+
+  $scope.verificar = function()
+  {
+    console.log($scope.item.proyecto_id);
+    for (var i = 0; i < $rootScope.proyectos.length; i++) {
+      if ($rootScope.proyectos[i].proyecto_id == $scope.item.proyecto_id) 
+      {
+        console.log($rootScope.proyectos[i]);
+        $scope.saldoActual = $rootScope.proyectos[i].saldoProyecto;
+        console.log($scope.saldoActual);
+      }
+    }
+    
+  };
+
 
   function Unidades(num){
 
@@ -263,7 +290,7 @@ function Millones(num) {
     return strMillones + " " + strMiles;
 }//Millones()
 
- $scope.NumeroALetras = function(num) {
+ var NumeroALetras = function(num) {
     var data = {
         numero: num,
         enteros: Math.floor(num),
