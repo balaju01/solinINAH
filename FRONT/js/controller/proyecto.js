@@ -120,7 +120,7 @@ angular.module('solin').controller('ProyectoController',['$scope','$log','$http'
 	};
 
 	$scope.update = function(){
-		if($scope.item.saldo < ($rootScope.date.presupuesto - ($rootScope.monto[$rootScope.date.id])))
+		if($scope.item.montoAsignado < ($rootScope.date.presupuesto - ($rootScope.monto[$rootScope.date.id])))
 		{
 			$scope.item = $rootScope.item;
 

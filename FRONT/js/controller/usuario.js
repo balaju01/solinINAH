@@ -184,7 +184,17 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
 
 	$scope.eliminar = function(item)
 	{
-		req = {
+		console.log(item);
+		for (var i = 0; i < $rootScope.proyectos.length; i++) {
+	      if ($rootScope.proyectos[i].proyecto_id == item.proyecto_id) 
+	      {
+	        console.log($rootScope.proyectos[i]);
+	        $scope.saldoActual = $rootScope.proyectos[i].saldoProyecto;
+	        console.log($scope.saldoActual);
+	      }
+	    }
+
+		var req = {
 	        method: 'DELETE',
 	        url:$rootScope.ruta+"solins/"+item.id,
 	       
@@ -201,6 +211,28 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
           alert("Ha fallado la petición. Estado HTTP:"+status);
 
         });
+
+        var req1 = {
+            method: 'PATCH',
+            url:$rootScope.ruta+"proyectos/"+item.proyecto_id,
+            
+            data: {
+              
+              saldo: ($scope.saldoActual + item.monto)
+              
+            }
+        }
+        $http(req1)
+          .success(function (response) {//'response' es el objeto que devuelve el servicio web
+            console.log(response);
+            //$location.path('/proyecto');
+            
+          })
+          .error(function (response){
+            console.log(response);
+            alert("Ha fallado la petición. Estado HTTP:"+status);
+            $location.path('/');
+          });
 	};
 
 	$scope.recursosDepto = function(){

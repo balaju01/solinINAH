@@ -12,7 +12,7 @@
 
 		<div class="form-group">
 			<label>Saldo del Proyecto</label>
-			<input type="number" name="email" ng-model="item.saldo">
+			<input ng-disable = "!formOption" type="number" name="email" ng-model="item.saldo">
 		</div>
 		
 		<div ng-show = "!formOption" class="form-group">

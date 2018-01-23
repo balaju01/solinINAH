@@ -21,6 +21,7 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
     };
 
   $scope.item = $rootScope.solin;
+  $scope.saldo = $rootScope.solin.monto;
   $scope.item.user = $rootScope.users.name;
   $scope.item.cargoCr = $rootScope.users.cargo;
 
@@ -35,6 +36,16 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
   }
     //peticion para recuperar todos los proyectos por departamentos y solines por departamento
   var init = function(){
+
+    for (var i = 0; i < $rootScope.proyectos.length; i++) {
+      if ($rootScope.proyectos[i].proyecto_id == $scope.item.proyecto_id) 
+      {
+        console.log($rootScope.proyectos[i]);
+        $scope.saldoActual = $rootScope.proyectos[i].saldoProyecto;
+        console.log($scope.saldoActual);
+      }
+    }
+
     var response=$http(req);
 
     response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
@@ -66,6 +77,7 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
     //aqui hay que agregar una llamada al end point ContSolinPeriodo para que traiga el numero de columnas y agregarlo al folio
     var fol = $scope.data[0].seudonimo + $scope.item.proyecto_id+'-'+$filter('date')(new Date(),'yyyy')+'-'+($rootScope.solines+1);
     
+    $scope.saldoActual = $scope.saldoActual - $scope.item.monto;
     
     req = {
           method: 'POST',
@@ -98,10 +110,60 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
         });
     console.log($scope.item);
 
+    req1 = {
+            method: 'PATCH',
+            url:$rootScope.ruta+"proyectos/"+$scope.item.proyecto_id,
+            
+            data: {
+              
+              saldo: $scope.saldoActual
+              
+            }
+        }
+        $http(req1)
+          .success(function (response) {//'response' es el objeto que devuelve el servicio web
+            console.log(response);
+            //$location.path('/proyecto');
+            
+          })
+          .error(function (response){
+            console.log(response);
+            alert("Ha fallado la petición. Estado HTTP:"+status);
+            $location.path('/proyecto');
+          });
+
   };
 
   $scope.update = function(){
     console.log($scope.item);
+    console.log($scope.saldoActual);
+    console.log($scope.item.monto);
+    console.log($scope.saldo);
+    $scope.saldoActual = $scope.saldoActual - $scope.item.monto + $scope.saldo;
+    console.log($scope.saldoActual);
+    
+    req1 = {
+            method: 'PATCH',
+            url:$rootScope.ruta+"proyectos/"+$scope.item.proyecto_id,
+            
+            data: {
+              
+              saldo: $scope.item.saldoActual
+              
+            }
+        }
+        $http(req1)
+          .success(function (response) {//'response' es el objeto que devuelve el servicio web
+            console.log(response);
+            //$location.path('/proyecto');
+            
+          })
+          .error(function (response){
+            console.log(response);
+            alert("Ha fallado la petición. Estado HTTP:"+status);
+            $location.path('/proyecto');
+          });
+
     req = {
           method: 'PATCH',
           url:$rootScope.ruta+"solins/"+$scope.item.id,
@@ -135,14 +197,17 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
 
   $scope.verificarMonto = function(num)
   {
+    console.log($scope.saldoActual)
     if(num < $scope.saldoActual)
     {
       $scope.saldoVigente = num;
       NumeroALetras(num);
+      $scope.aut = 0;
     }
     else
     {
       console.log("El monto solicitado supera el saldo del Proyecto");
+      $scope.aut = 1;
     }
   };
 
@@ -159,6 +224,8 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
     }
     
   };
+
+
 
 
   function Unidades(num){
