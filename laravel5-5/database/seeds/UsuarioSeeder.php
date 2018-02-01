@@ -22,7 +22,23 @@ class UsuarioSeeder extends Seeder
         		'password' => Hash::make('admin'),
         		'rol' => 1,
         		'cargo' => 'Administrador'
-        	]
+        	],
+            [
+                'name' => 'Arturo Gómez Martínez',
+                'departamento_id' => 2,
+                'email' => 'agomez',
+                'password' => Hash::make('123456'),
+                'rol' => 1,
+                'cargo' => 'Jefe de la Subdirección Etnografía'
+            ],
+            [
+                'name' => 'Juan Martínez Martínez',
+                'departamento_id' => 3,
+                'email' => 'jmartinez',
+                'password' => Hash::make('123456'),
+                'rol' => 1,
+                'cargo' => 'Jefe de Recursos Humanos'
+            ]
         ];
 
         foreach ($users as $user) {

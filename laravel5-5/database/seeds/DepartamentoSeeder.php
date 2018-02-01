@@ -20,12 +20,12 @@ class DepartamentoSeeder extends Seeder
         		'seudonimo' => 'admin',
         	],
         	[
-        		'name' => 'Recursos Financieros',
-        		'seudonimo' => 'RecFin',
+        		'name' => 'Subdirección Etnografía',
+        		'seudonimo' => 'SubEtn',
         	],
         	[
-        		'name' => 'Subdirección Administrativa',
-        		'seudonimo' => 'SubAdm',
+        		'name' => 'Recursos Financieros',
+        		'seudonimo' => 'RF',
         	]
         ];
 
