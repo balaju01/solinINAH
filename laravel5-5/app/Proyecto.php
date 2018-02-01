@@ -26,6 +26,6 @@ class Proyecto extends Model {
 
 	public function Departamento()
 	{
-		return $this->belongsToMany('App\Departamento', 'deptos__proyectos');
+		return $this->belongsToMany('App\Departamento', 'deptos_proyectos');
 	}
 }

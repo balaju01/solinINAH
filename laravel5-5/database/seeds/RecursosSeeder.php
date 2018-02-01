@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Recurso
+use App\Recurso;
 
 class RecursosSeeder extends Seeder
 {
@@ -23,7 +23,7 @@ class RecursosSeeder extends Seeder
         ];
 
         foreach ($recursos as $recurso) {
-        	Departamento::create($recurso);
+        	Recurso::create($recurso);
         }
     }
 }

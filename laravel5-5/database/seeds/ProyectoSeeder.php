@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Proyecto
+use App\Proyecto;
 
 class ProyectoSeeder extends Seeder
 {
@@ -23,7 +23,7 @@ class ProyectoSeeder extends Seeder
         ];
 
         foreach ($proyectos as $proyecto) {
-        	Departamento::create($proyecto);
+        	Proyecto::create($proyecto);
         }
     }
 }

@@ -30,7 +30,7 @@ class CreateDeptosProyectosTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('deptos__proyectos');
+		Schema::drop('deptos_proyectos');
 	}
 
 }
