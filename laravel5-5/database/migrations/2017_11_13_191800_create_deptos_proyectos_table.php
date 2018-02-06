@@ -12,7 +12,7 @@ class CreateDeptosProyectosTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('deptos__proyectos', function(Blueprint $table)
+		Schema::create('deptos_proyectos', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('departamento_id')->unsigned();
