@@ -76,8 +76,11 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
     console.log($rootScope.ruta+"solins");
     //aqui hay que agregar una llamada al end point ContSolinPeriodo para que traiga el numero de columnas y agregarlo al folio
     var fol = $scope.data[0].seudonimo + $scope.item.proyecto_id+'-'+$filter('date')(new Date(),'yyyy')+'-'+($rootScope.solines+1);
-    
+    console.log($scope.item);
     $scope.saldoActual = $scope.saldoActual - $scope.item.monto;
+
+    var pdf = new jsPDF();
+    
     
     req = {
           method: 'POST',
@@ -102,6 +105,29 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
         .success(function (response) {//'response' es el objeto que devuelve el servicio web
           console.log(response);
           $location.path('/');
+          pdf.setFontSize(22);
+          pdf.text(60,20,"SOLICITUD DE GASTOS");
+          //pdf.addImage(../../img/mna.png, 'JPEG', 10, 10, 50, 50);
+          pdf.setFontSize(14);
+          pdf.text(20,40,fol);
+          pdf.text(90,40,$scope.data[0].nameDepartamento);
+          pdf.text(170,40,$filter('date')(new Date(),'dd-MM-yyyy'));
+
+          pdf.setFontSize(12);
+          pdf.text(20,60,"SOLICITO A USTED AUTORIZACION POR LA CANTIDAD DE:  " + $scope.item.monto);
+          pdf.text(10,80,"CANTIDAD CON LETRA:  " + $scope.item.montoL);
+          pdf.text(20,100,"DESCRIPCION DEL GASTO: " + $scope.item.descripcion);
+          pdf.text(20,120,"TIPO DE GASTO: " + $scope.item.proyecto_id);
+          pdf.text(20,140,"SOLICITADO POR: " + $scope.item.user);
+          pdf.text(20,160,"CARGO: " + $scope.item.cargoCr);
+          pdf.text(120,160,"FIRMA:_________________");
+          pdf.text(20,180,"COMPROBANTES ENTREGADOS: " + $scope.item.comprobantes);
+          pdf.text(20,200,"FORMA DE PAGO: " + $scope.item.pago);
+          pdf.text(20,220,"A NOMBRE DE: " + $scope.item.n_pago);
+          pdf.text(20,260,"RECIBI EFECTIVO");
+          pdf.text(90,260,"AUTORIZO");
+          pdf.text(140,260,"FIRMA Y SELLO DE RECIBIDO");
+          pdf.save('mipdf.pdf');
         })
         .error(function (response){
           console.log(response);
@@ -131,7 +157,7 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
             alert("Ha fallado la petición. Estado HTTP:"+status);
             $location.path('/proyecto');
           });
-
+  
   };
 
   $scope.update = function(){
