@@ -5,7 +5,7 @@ angular.module('solin').controller('HomeController',['$scope', '$rootScope', '$f
     console.log($rootScope.users);
     console.log($scope.date);
     $rootScope.ruta = "http://localhost/solin/laravel5-5/public/api/";
-    $scope.aux = "Periodo_"+$filter('date')(new Date(),'yyyy');
+    $scope.aux = "Periodo "+$filter('date')(new Date(),'yyyy');
     console.log($scope.aux);
     var req = {
         method:"GET",

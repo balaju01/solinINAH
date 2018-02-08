@@ -2,6 +2,7 @@
   "requires": true,
   "lockfileVersion": 1,
   "dependencies": {
+    "alertifyjs": "^1.11.0",
     "angular": {
       "integrity": "sha1-D4mDfa4XdrAcyx+iCW2w2Tc9mJc=",
       "resolved": "https://registry.npmjs.org/angular/-/angular-1.6.7.tgz",

@@ -19,7 +19,7 @@ class UsuarioController extends Controller {
 	public function index()
 	{
 		//Se muestran todos los usuarios
-		$data = DB::select('SELECT  users.id, users.name, departamentos.id AS id_departamento, users.email, users.password, departamentos.name AS departamento  FROM users INNER JOIN departamentos ON departamentos.id = users.departamento_id');
+		$data = DB::select('SELECT  users.id, users.name, departamentos.id AS id_departamento, users.email, users.password, departamentos.name AS departamento, users.cargo  FROM users INNER JOIN departamentos ON departamentos.id = users.departamento_id');
 		if(!$data){
 			return response()->json(['No hay Usuarios',404],404);
 		}
