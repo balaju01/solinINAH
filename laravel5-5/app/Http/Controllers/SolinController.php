@@ -59,9 +59,9 @@ class SolinController extends Controller {
 
 	}
 
-	public function ContSolinPeriodo($periodo)
+	public function ContSolinPeriodo($departamento,$periodo)
 	{
-		$data = DB::select('SELECT COUNT (id) FROM solins WHERE periodo_id = '+$periodo);
+		$data = DB::select('SELECT count(*) FROM solins INNER JOIN proyectos ON proyectos.id = solins.proyecto_id INNER JOIN deptos__proyectos ON deptos__proyectos.proyecto_id = proyectos.id INNER JOIN departamentos ON departamentos.id = deptos__proyectos.departamento_id  WHERE departamentos.id = ' + $departamento + ' AND solins.periodo_id = ' + $periodo);
 		if (!$data) {
 			return response()->json(['No se encontraron solines',404],404);
 		}

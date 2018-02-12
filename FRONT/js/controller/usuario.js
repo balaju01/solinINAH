@@ -32,6 +32,11 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
     	url: $rootScope.ruta+"solins/periodo/"+$rootScope.date.id+"/estado/2",
   	}
 
+  	var req7 = {
+  		method:"GET",
+    	url: $rootScope.ruta+"solins/contar/departamento/"+$rootScope.users.departamento_id+"/periodo/"+$rootScope.date.id,
+  	}
+
 	var init = function(){
 		$rootScope.solines = 0;
 		if ($scope.rol == 2){
@@ -39,7 +44,7 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
 			response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
 		      $scope.data = data[0];
 		      console.log($scope.data);
-		      $rootScope.solines = $rootScope.solines + $scope.data.length;
+		      
 		      
 		    });
 		    response.error(function(data, status, headers, config) {
@@ -49,8 +54,8 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
 		  	var response=$http(req2);
 			response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
 		      $scope.data1 = data[0];
-		      console.log($scope.data);
-		      $rootScope.solines = $rootScope.solines + $scope.data.length;
+		      console.log($scope.data1);
+		      
 		      
 		    });
 		    response.error(function(data, status, headers, config) {
@@ -60,8 +65,19 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
 		  	var response=$http(req3);
 			response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
 		      $scope.data2 = data[0];
-		      console.log($scope.data);
-		      $rootScope.solines = $rootScope.solines + $scope.data.length;
+		      console.log($scope.data2);
+		      
+		      
+		    });
+		    response.error(function(data, status, headers, config) {
+		      alert("Ha fallado la petición. Estado HTTP:"+status);
+		  	});
+
+		  	var response=$http(req7);
+			response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
+		      $scope.data3 = data[0];
+		      console.log($scope.data3);
+		      $rootScope.solines = $scope.data3;
 		      
 		    });
 		    response.error(function(data, status, headers, config) {
@@ -84,7 +100,7 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
 		  	var response=$http(req5);
 			response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
 		      $scope.data1 = data[0];
-		      console.log($scope.data);
+		      console.log($scope.data1);
 		      
 		      
 		    });
@@ -95,7 +111,7 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
 		  	var response=$http(req6);
 			response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
 		      $scope.data2 = data[0];
-		      console.log($scope.data);
+		      console.log($scope.data2);
 		      
 		      
 		    });
@@ -103,6 +119,7 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
 		      alert("Ha fallado la petición. Estado HTTP:"+status);
 		  	});
 	  	}
+	  	
 	};
 
 	init();
