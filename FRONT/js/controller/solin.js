@@ -128,11 +128,13 @@ angular.module('solin').controller('SolinController',['$scope','$log','$http','$
           pdf.text(90,260,"AUTORIZO");
           pdf.text(140,260,"FIRMA Y SELLO DE RECIBIDO");
           pdf.save('mipdf.pdf');
+
+          alertify.success('Se creo el Solin exitosamente');
         })
         .error(function (response){
           console.log(response);
           $location.path('/');
-          alert("Ha fallado la petición. Estado HTTP:"+status);
+          alertify.error('No se pudo crear el Solin');
         });
     console.log($scope.item);
 

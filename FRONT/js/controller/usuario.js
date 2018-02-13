@@ -44,11 +44,12 @@ angular.module('solin').controller('UsuarioController',['$scope','$log','$http',
 			response.success(function(data, status, headers, config) {//'response' es el objeto que devuelve el servicio web
 		      $scope.data = data[0];
 		      console.log($scope.data);
-		      
+		      alertify.error('No hay Solines sin Confirmar');
 		      
 		    });
 		    response.error(function(data, status, headers, config) {
-		      alert("Ha fallado la petición. Estado HTTP:"+status);
+		      
+		      alertify.error('No hay Solines sin Confirmar');
 		  	});
 
 		  	var response=$http(req2);
